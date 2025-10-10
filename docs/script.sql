@@ -237,6 +237,7 @@ CREATE TABLE programas (
 -- 3. Localidad Suroccidente
 -- 4. Localidad Suroriente
 -- 5. Localidad Metropolitana
+-- 6. Todas
 
 CREATE TABLE localidades (
     id_localidad SERIAL PRIMARY KEY,
@@ -249,6 +250,7 @@ CREATE TABLE localidades (
 -- ==========================================
 --  TABLA: Barrios
 --  Contiene subdivisiones dentro de una localidad.
+-- (Actualizar barrios)
 -- ==========================================
 -- 1. Adela de Char.
 -- 2. Altamira.
@@ -479,8 +481,12 @@ CREATE TABLE localidades_barrios (
 
 -- ==========================================
 --  TABLA: Proyecto_estado
---  Define los estados generales de un proyecto (por ejemplo: "En ejecución", "Finalizado").
+--  Define los estados generales de un proyecto 
 -- ==========================================
+-- 1. Formulación
+-- 2. Precontractual
+-- 2. Contractual
+-- 3. Postcontractual
 CREATE TABLE proyecto_estado (
     id_proyecto_estado SERIAL PRIMARY KEY,
     nombre_estado VARCHAR(50) NOT NULL UNIQUE,
@@ -492,6 +498,22 @@ CREATE TABLE proyecto_estado (
 --  TABLA: Proyecto_subestado
 --  Subcategorías del estado, asociadas al proyecto_estado.
 -- ==========================================
+-- 1. Formulación
+    -- 1.1. Proyecto fase I prefactibilidad
+    -- 1.2. Proyecto fase II factibilidad
+    -- 1.3. Proyecto fase II diseños definitivos y detalles
+-- 2. Precontractual
+    -- 2.1. En_Estructuración
+    -- 2.2. En_Convocatoria
+    -- 2.3. Perfeccionamiento y Legalización
+-- 3. Contractual
+    -- 3.1. En_Ejecución
+    -- 3.2. Suspendido
+    -- 3.3. Terminado
+-- 4. Postcontractual
+    -- 4.1. Terminado
+    -- 4.2. Entregado
+    -- 4.3. Liquidado
 CREATE TABLE proyecto_subestado (
     id_proyecto_subestado SERIAL PRIMARY KEY,
     id_proyecto_estado INT REFERENCES proyecto_estado(id_proyecto_estado)
@@ -539,4 +561,108 @@ CREATE TABLE proyectos_barrios (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
     PRIMARY KEY (id_proyecto, id_barrio)
+);
+
+-- ============================================
+-- TABLA: tipos_asociacion
+-- Contiene los tipos o clasificaciones de asociaciones.
+-- Ejemplo: "Cooperativa", "Fundación", "Asociación Civil"
+-- ============================================
+CREATE TABLE tipos_asociacion (
+    id_tipo_asociacion SERIAL PRIMARY KEY,           -- Identificador único
+    nombre_tipo_de_asociacion VARCHAR(100) NOT NULL, -- Nombre del tipo de asociación
+    created_at TIMESTAMPTZ DEFAULT NOW(),            -- Fecha de creación del registro
+    updated_at TIMESTAMPTZ DEFAULT NOW()             -- Fecha de última actualización
+);
+
+-- ============================================
+-- TABLA: asociaciones
+-- Registra las asociaciones con su NIT y nombre.
+-- Cada asociación pertenece a un tipo.
+-- ============================================
+CREATE TABLE asociaciones (
+    id_asociacion SERIAL PRIMARY KEY,         -- Identificador único
+    nit VARCHAR(14) UNIQUE NOT NULL,          -- Número de identificación tributaria
+    nombre_asociacion TEXT NOT NULL,          -- Nombre de la asociación
+    id_tipo_asociacion INT NOT NULL,          -- FK al tipo de asociación
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT fk_asociacion_tipo
+        FOREIGN KEY (id_tipo_asociacion)
+        REFERENCES tipos_asociacion (id_tipo_asociacion)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+-- ============================================
+-- TABLA: tipo_persona
+-- Clasifica los tipos de persona dentro del sistema.
+-- Ejemplo: "Natural", "Jurídica"
+-- ============================================
+CREATE TABLE tipo_persona (
+    id_tipo_persona SERIAL PRIMARY KEY,       -- Identificador único
+    nombre_tipo_persona VARCHAR(30) NOT NULL  -- Nombre del tipo de persona
+);
+
+-- ============================================
+-- TABLA: personas
+-- Almacena la información básica de las personas.
+-- Incluye FK a tipo_persona.
+-- ============================================
+CREATE TABLE personas (
+    id_persona SERIAL PRIMARY KEY,                  -- Identificador único
+    nombre_persona VARCHAR(100) NOT NULL,           -- Nombre de la persona
+    numero_identificacion VARCHAR(20) UNIQUE NOT NULL, -- Documento o NIT
+    id_tipo_persona INT NOT NULL,                   -- FK al tipo de persona
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT fk_persona_tipo
+        FOREIGN KEY (id_tipo_persona)
+        REFERENCES tipo_persona (id_tipo_persona)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+-- ============================================
+-- TABLA: miembros_asociacion
+-- Relaciona personas con asociaciones, indicando su porcentaje de participación.
+-- ============================================
+CREATE TABLE miembros_asociacion (
+    id_miembros_asociacion SERIAL PRIMARY KEY,      -- Identificador único
+    id_persona INT NOT NULL,                        -- FK a persona
+    id_asociacion INT NOT NULL,                     -- FK a asociación
+    porcentaje_participacion DECIMAL(5,2) CHECK (porcentaje_participacion >= 0 AND porcentaje_participacion <= 100),
+    UNIQUE (id_persona, id_asociacion),             -- Evita duplicidad
+    CONSTRAINT fk_miembro_persona
+        FOREIGN KEY (id_persona)
+        REFERENCES personas (id_persona)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT fk_miembro_asociacion
+        FOREIGN KEY (id_asociacion)
+        REFERENCES asociaciones (id_asociacion)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+);
+
+-- ============================================
+-- TABLA: contratista
+-- Registra a las personas contratistas, que pueden estar asociadas a una asociación.
+-- ============================================
+CREATE TABLE contratista (
+    id_contratista SERIAL PRIMARY KEY,        -- Identificador único
+    id_persona INT NOT NULL,                  -- FK a persona
+    id_asociacion INT,                        -- FK opcional a asociación (puede ser NULL)
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT fk_contratista_persona
+        FOREIGN KEY (id_persona)
+        REFERENCES personas (id_persona)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+    CONSTRAINT fk_contratista_asociacion
+        FOREIGN KEY (id_asociacion)
+        REFERENCES asociaciones (id_asociacion)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
 );
