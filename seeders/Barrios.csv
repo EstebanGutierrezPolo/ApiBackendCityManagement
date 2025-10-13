@@ -1,205 +1,206 @@
-﻿id_barrio;nombre_barrio
-1;Alameda Del Rio
-2;Alto De Los Robles
-3;Altos De Liman
-4;Altos Del Limonar
-5;Apulia
-6;Baranoa
-7;Barlovento
-8;Barrio Abajo
-9;Bermejal
-10;Bernardino Doyos
-11;Bocacanoa
-12;Bocas De Ceniza
-13;Bosa
-14;Buenavista
-15;Buenos Aires
-16;Campestre
-17;Campos Verdes
-18;Caribe
-19;Cervantes
-20;Central
-21;Chaparral
-22;Chiquinquirá
-23;Ciudad Jardín
-24;Ciudad Mallorquín
-25;Ciudadela 20 De Julio
-26;Ciudadela Del Parque
-27;Ciudadela De Paz
-28;Ciudadela Pinar Del Río
-29;Colombia
-30;Concepción
-31;Corredor Universitario
-32;Corregimiento La Playa
-33;Corregimiento Juan Mina
-34;Corregimiento Puerto Caimán
-35;Corregimiento Salgar
-36;Crucero De Las Flores
-37;El Castillo
-38;El Concorde
-39;El Golf
-40;El Molino
-41;El Porvenir
-42;El Prado
-43;El Recreo
-44;El Reposo
-45;El Santuario
-46;El Valle
-47;Esperanza
-48;Extranjero
-49;Estrella
-50;Granada
-51;Guaimaral
-52;Impresos Y Publicidad
-53;Inmobiliaria Maribel Alan
-54;Inmobiliaria N. Alan
-55;Javier Marroquín
-56;José Antonio Galán
-57;La Arboleda
-58;La Castellana
-59;La Felicidad
-60;La Floresta
-61;La Gran Vía
-62;La Inmaculada
-63;La Libertad
-64;La Paz
-65;La Plata
-66;La Pradera
-67;La Victoria
-68;Las Américas
-69;Las Cabañas
-70;Las Delicias
-71;Las Estrellas
-72;Las Gardenias
-73;Las Lomas
-74;Las Nieves
-75;Las Palmas
-76;Las Riberas
-77;Las Terrazas
-78;Las Terrenas
-79;Libano
-80;Loma Fresca
-81;Los Álamos
-82;Los Andes
-83;Los Atlánticos
-84;Los Campanos
-85;Los Continentes
-86;Los Corales
-87;Los Girasoles
-88;Los Laureles
-89;Los Nogales
-90;Los Robles
-91;Los Rosales
-92;Los Sauces
-93;Los Trupillos
-94;María Auxiliadora
-95;Mermejal
-96;Modelia
-97;Montecarlo
-98;Moras
-99;Nueva Colombia
-100;Nuevo Milenio
-101;Nuevo Sol
-102;Palmar Del Río
-103;Pasacorriendo
-104;Pasadena
-105;Pinar Del Río
-106;Planes Para El Desarrollo Metropolitano
-107;Planes Para El Desarrollo Occidental
-108;Planes De Vivienda
-109;Playa Y Mar
-110;Primavera
-111;Puerta Del Sol
-112;Puerto Giraldo
-113;Puerto Salgar
-114;Rebolo
-115;Riomar
-116;Sagrado Corazón
-117;San Blas
-118;San Nicolás
-119;San Patricio
-120;San Pedro
-121;Santa Ana
-122;Santa Cruz
-123;Santa Fe
-124;Santa Lucía
-125;Santa María
-126;Santa Rosa
-127;Santos Joaquín Guzmán
-128;Sevilla
-129;Sevilla Real
-130;Simón Bolívar
-131;Sintramineral
-132;Sinu
-133;Sion
-134;Soledad
-135;Universal
-136;Venezuela
-137;Verde Mar
-138;Villa Campestre
-139;Villa Carolina
-140;Villa Country
-141;Villa Del Carmen
-142;Villa Del Mar
-143;Villa Flor
-144;Villa Florinda
-145;Villa Olímpica
-146;Villa San Pablo
-147;Villa Sevilla
-148;Villa Sol
-149;Villa Tarel
-150;Villa Valle
-151;Villa Yare
-152;Visitas
-153;Zaidu
-154;PUMAREJO
-155;REBOLO
-156;RIOMAR
-157;SAN FELIPE
-158;SAN FRANCISCO
-159;SAN ISIDRO
-160;SAN JOSE
-161;SAN LUIS
-162;SAN MARINO
-163;SAN NICOLAS
-164;SAN PEDRO
-165;SAN PEDRO ALEJANDRINO
-166;SAN ROQUE
-167;SAN SALVADOR
-168;SAN VICENTE
-169;SANTA ANA
-170;SANTA HELENA
-171;SANTA MARIA
-172;SANTA MONICA
-173;SANTO DOMINGO
-174;SANTO DOMINGO DE GUZMAN
-175;SEVILLA DEL CARIBE
-176;SEVILLA REAL
-177;SIAPE
-178;SIETE DE ABRIL
-179;SIETE DE AGOSTO
-180;SIMON BOLIVAR
-181;SINAI
-182;SOLAIRE NORTE
-183;TAJAMAR
-184;TAYRONA
-185;UNIVERSAL
-186;VEINTE DE JULIO
-187;VILLA BLANCA
-188;VILLA CAROLINA
-189;VILLA COUNTRY
-190;VILLA DEL CARMEN
-191;VILLA DEL ESTE
-192;VILLA DEL ROSARIO
-193;VILLA FLOR
-194;VILLA SAN CARLOS
-195;VILLA SAN CARLOS II
-196;VILLA SAN PEDRO II
-197;VILLA SANTOS
-198;VILLA SEVILLA
-199;VILLA VALERY
-200;VILLANUEVA
-201;VILLAS DE LA CORDIALIDAD
-202;VILLAS DE SAN PABLO
-203;VILLATE
-204;ZONA FRANCA
+id_barrio,barrio
+1,Abajo
+2,Alameda Del Rio
+3,Alfonso Lopez
+4,Altamira
+5,Altos De Riomar
+6,Altos Del Limon
+7,Altos Del Prado
+8,America
+9,Andalucia
+10,Atlantico
+11,Barlovento
+12,Barranquillita
+13,Bella Arena
+14,Bellavista
+15,Bernardo Hoyos
+16,Betania
+17,Bosque Urbano
+18,Boston
+19,Boyaca
+20,Buena Esperanza
+21,Buenavista
+22,Buenos Aires
+23,California
+24,Campo Alegre
+25,Caribe Verde
+26,Carlos Meisel
+27,Carrizal
+28,Centro
+29,Cevillar
+30,Chiquinquira
+31,Ciudad Caribe
+32,Ciudad Jardin
+33,Ciudad Modesto
+34,Ciudadela 20 De Julio
+35,Ciudadela De La Salud
+36,Ciudadela De Paz
+37,Colina Campestre
+38,Colombia
+39,Cordialidad
+40,Corredor Carrera 38
+41,Corredor Cordialidad
+42,Corredor Via Al Mar
+43,Corregimiento Juan Mina
+44,Corregimiento La Playa
+45,Cuchilla De Villate
+46,El Bosque
+47,El Campito
+48,El Carmen
+49,El Castillo
+50,El Eden 2000
+51,El Eden I
+52,El Ferry
+53,El Golf
+54,El Golfo
+55,El Limon
+56,El Limoncito
+57,El Milagro
+58,El Poblado
+59,El Porvenir
+60,El Prado
+61,El Pueblo
+62,El Recreo
+63,El Romance
+64,El Rosario
+65,El Rubi
+66,El Santuario
+67,El Silencio
+68,El Tabor
+69,El Valle
+70,Evaristo Sourdis
+71,Granadillo
+72,Industrial Norte
+73,Industrial Via 40
+74,Jose Antonio Galan
+75,Kalamary
+76,Kennedy
+77,La Alboraya
+78,La Campiña
+79,La Ceiba
+80,La Chinita
+81,La Concepcion
+82,La Cumbre
+83,La Esmeralda
+84,La Floresta
+85,La Florida
+86,La Gloria
+87,La Libertad
+88,La Loma
+89,La Loma Ii
+90,La Luz
+91,La Magdalena
+92,La Manga
+93,La Paz
+94,La Pradera
+95,La Sierra
+96,La Sierrita
+97,La Union
+98,La Victoria
+99,Las Americas
+100,Las Cayenas
+101,Las Colinas
+102,Las Delicias
+103,Las Dunas
+104,Las Estrellas
+105,Las Flores
+106,Las Gardenias
+107,Las Granjas
+108,Las Malvinas
+109,Las Mercedes
+110,Las Nieves
+111,Las Palmas
+112,Las Palmeras
+113,Las Terrazas
+114,Las Tres Ave Marias
+115,Lipaya
+116,Loma Fresca
+117,Los Alpes
+118,Los Andes
+119,Los Angeles I
+120,Los Angeles Ii
+121,Los Angeles Iii
+122,Los Continentes
+123,Los Girasoles
+124,Los Jobos
+125,Los Laureles
+126,Los Nogales
+127,Los Olivos I
+128,Los Olivos Ii
+129,Los Pinos
+130,Los Rosales
+131,Los Trupillos
+132,Lucero
+133,Me Quejo
+134,Mercedes Sur
+135,Miramar
+136,Modelo
+137,Montecristo
+138,Montes
+139,Nueva Colombia
+140,Nueva Granada
+141,Nuevo Horizonte
+142,Olaya
+143,Palmas Del Rio
+144,Paraiso
+145,Pasadena
+146,Paseo De La Castellana
+147,Pinar Del Rio
+148,Plan Zonal Riomar
+149,Planes Parciales Metropolitana
+150,Planes Parciales Norte
+151,Planes Parciales Suroccidente
+152,Por Fin
+153,Primero De Mayo
+154,Puerta Dorada
+155,Pumarejo
+156,Rebolo
+157,Riomar
+158,San Felipe
+159,San Francisco
+160,San Isidro
+161,San Jose
+162,San Luis
+163,San Marino
+164,San Nicolas
+165,San Pedro
+166,San Pedro Alejandrino
+167,San Roque
+168,San Salvador
+169,San Vicente
+170,Santa Ana
+171,Santa Helena
+172,Santa Maria
+173,Santa Monica
+174,Santo Domingo
+175,Santo Domingo De Guzman
+176,Sevilla Del Caribe
+177,Sevilla Real
+178,Siape
+179,Siete De Abril
+180,Siete De Agosto
+181,Simon Bolivar
+182,Sinai
+183,Solaire Norte
+184,Tajamar
+185,Tayrona
+186,Universal
+187,Veinte De Julio
+188,Villa Blanca
+189,Villa Carolina
+190,Villa Country
+191,Villa Del Carmen
+192,Villa Del Este
+193,Villa Del Rosario
+194,Villa Flor
+195,Villa San Carlos
+196,Villa San Carlos Ii
+197,Villa San Pedro Ii
+198,Villa Santos
+199,Villa Sevilla
+200,Villa Valery
+201,Villanueva
+202,Villas De La Cordialidad
+203,Villas De San Pablo
+204,Villate
+205,Zona Franca

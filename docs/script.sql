@@ -597,8 +597,10 @@ CREATE TABLE asociaciones (
 -- ============================================
 -- TABLA: tipo_persona
 -- Clasifica los tipos de persona dentro del sistema.
--- Ejemplo: "Natural", "Jurídica"
 -- ============================================
+-- 1. Natural
+-- 2. Jurídica
+
 CREATE TABLE tipo_persona (
     id_tipo_persona SERIAL PRIMARY KEY,       -- Identificador único
     nombre_tipo_persona VARCHAR(30) NOT NULL  -- Nombre del tipo de persona
