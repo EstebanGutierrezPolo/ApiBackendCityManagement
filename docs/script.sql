@@ -279,8 +279,6 @@ CREATE TABLE localidades_barrios (
     id_barrio INT NOT NULL REFERENCES barrios(id_barrio)
         ON UPDATE CASCADE
         ON DELETE CASCADE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
     PRIMARY KEY (id_localidad, id_barrio)
 );
 
