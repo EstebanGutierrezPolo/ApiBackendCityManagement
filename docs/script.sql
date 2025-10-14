@@ -12,46 +12,41 @@ SELECT postgis_full_version();
 
 -- Tabla: roles - Define los roles (permisos) de los usuarios en la aplicación (Ej: Administrador, Alcalde, Consultor) 
 ----- (Por confirmar roles) -----.
-
+----- FALTANTE -----
 CREATE TABLE roles (
     id_rol SERIAL PRIMARY KEY, -- Identificador único del rol (PK).
     nombre_rol VARCHAR(50) UNIQUE NOT NULL, -- Nombre descriptivo del rol.
-    created_at TIMESTAMPTZ DEFAULT NOW(), -- Fecha de creación del registro.
-    updated_at TIMESTAMPTZ DEFAULT NOW() -- Fecha de la última actualización.
 );
 
 -- Tabla: cargos - Define los cargos que ocupan los usuarios dentro de la Alcaldía (Ej: Coordinador, Director de Proyecto) 
 ----- (Por confirmar cargos) ------.
+----- FALTANTE -----
+
 CREATE TABLE cargos (
     id_cargo SERIAL PRIMARY KEY, -- Identificador único del cargo (PK).
     nombre_cargo TEXT UNIQUE NOT NULL, -- Nombre completo del cargo.
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Tabla: estados_usuario - Define el estado actual de la cuenta de un usuario 
+-- 3. Tabla: estados_usuario - Define el estado actual de la cuenta de un usuario 
 -- 1. Activo 
 -- 2. Inactivo
 -- 3. Bloqueado.
 CREATE TABLE estados_usuario (
     id_estado_usuario SERIAL PRIMARY KEY, -- Identificador único del estado (PK).
     nombre_estado_usuario VARCHAR(30) UNIQUE NOT NULL, -- Nombre del estado.
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Tabla: tipos_documento - Define los tipos de documento de identificación 
+-- 4. Tabla: tipos_documento - Define los tipos de documento de identificación 
 -- 1. 'CÉDULA DE CIUDADANÍA'
 -- 2. 'CÉDULA EXTRANJERA' 
 -- 3. 'DOCUMENTO EXTRANJERO'
 -- 4. 'PASAPORTE'
 -- 5. 'REGISTRO CIVIL' 
 -- 6.'TARJETA DE IDENTIDAD'.
+-- 7. 'NIT'
 CREATE TABLE tipos_documento (
     id_tipo_documento SERIAL PRIMARY KEY, -- Identificador único del tipo de documento (PK).
     tipo_documento VARCHAR(100) UNIQUE NOT NULL, -- Nombre del tipo de documento.
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
@@ -101,8 +96,6 @@ CREATE TABLE usuarios (
 CREATE TABLE sectores (
     id_sector SERIAL PRIMARY KEY,
     nombre_sector VARCHAR(100) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- ============================================
@@ -120,8 +113,6 @@ CREATE TABLE sectores (
 CREATE TABLE dependencias (
     id_dependencia SERIAL PRIMARY KEY,
     nombre_dependencia VARCHAR(100) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 -- ============================================
