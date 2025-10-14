@@ -378,9 +378,7 @@ CREATE TABLE proyectos_barrios (
 ----- PENDIENTE CSV -----
 CREATE TABLE tipos_asociacion (
     id_tipo_asociacion SERIAL PRIMARY KEY,           -- Identificador único
-    nombre_tipo_de_asociacion VARCHAR(100) NOT NULL, -- Nombre del tipo de asociación
-    created_at TIMESTAMPTZ DEFAULT NOW(),            -- Fecha de creación del registro
-    updated_at TIMESTAMPTZ DEFAULT NOW()             -- Fecha de última actualización
+    nombre_tipo_de_asociacion VARCHAR(100) NOT NULL -- Nombre del tipo de asociación
 );
 
 -- ============================================

@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 import csv from "csv-parser";
-import pool from "../config/db";
+import pool from '../config/db';
 
 interface EstadoUsuarioRow {
   id_estado_usuario?: string;
@@ -10,7 +10,7 @@ interface EstadoUsuarioRow {
 }
 
 async function loadEstadosUsuario(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/estados_usuario.csv");
+  const filePath = path.join(__dirname, "../seeders/3_estados_usuario.csv");
   const rows: EstadoUsuarioRow[] = [];
 
   // 📥 Leer CSV
