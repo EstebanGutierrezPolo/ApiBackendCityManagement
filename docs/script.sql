@@ -15,7 +15,7 @@ SELECT postgis_full_version();
 ----- FALTANTE -----
 CREATE TABLE roles (
     id_rol SERIAL PRIMARY KEY, -- Identificador único del rol (PK).
-    nombre_rol VARCHAR(50) UNIQUE NOT NULL, -- Nombre descriptivo del rol.
+    nombre_rol VARCHAR(50) UNIQUE NOT NULL -- Nombre descriptivo del rol.
 );
 
 -- Tabla: cargos - Define los cargos que ocupan los usuarios dentro de la Alcaldía (Ej: Coordinador, Director de Proyecto) 
@@ -24,7 +24,7 @@ CREATE TABLE roles (
 
 CREATE TABLE cargos (
     id_cargo SERIAL PRIMARY KEY, -- Identificador único del cargo (PK).
-    nombre_cargo TEXT UNIQUE NOT NULL, -- Nombre completo del cargo.
+    nombre_cargo TEXT UNIQUE NOT NULL -- Nombre completo del cargo.
 );
 
 -- 3. Tabla: estados_usuario - Define el estado actual de la cuenta de un usuario 
@@ -35,7 +35,7 @@ CREATE TABLE cargos (
 ----- COMPLETADO CSV ----- 
 CREATE TABLE estados_usuario (
     id_estado_usuario SERIAL PRIMARY KEY, -- Identificador único del estado (PK).
-    nombre_estado_usuario VARCHAR(30) UNIQUE NOT NULL, -- Nombre del estado.
+    nombre_estado_usuario VARCHAR(30) UNIQUE NOT NULL -- Nombre del estado.
 );
 
 -- 4. Tabla: tipos_documento - Define los tipos de documento de identificación 
@@ -50,7 +50,7 @@ CREATE TABLE estados_usuario (
 ----- COMPLETADO CSV -----
 CREATE TABLE tipos_documento (
     id_tipo_documento SERIAL PRIMARY KEY, -- Identificador único del tipo de documento (PK).
-    tipo_documento VARCHAR(100) UNIQUE NOT NULL, -- Nombre del tipo de documento.
+    tipo_documento VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de documento.
 );
 
 -- 5. Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
@@ -100,7 +100,7 @@ CREATE TABLE usuarios (
 ----- COMPLETADO CSV -----
 CREATE TABLE sectores (
     id_sector SERIAL PRIMARY KEY,
-    nombre_sector VARCHAR(100) NOT NULL UNIQUE,
+    nombre_sector VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- ============================================
@@ -118,7 +118,7 @@ CREATE TABLE sectores (
 ----- COMPLETADO CSV -----
 CREATE TABLE dependencias (
     id_dependencia SERIAL PRIMARY KEY,
-    nombre_dependencia VARCHAR(100) NOT NULL UNIQUE,
+    nombre_dependencia VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- ============================================
@@ -353,7 +353,7 @@ CREATE TABLE proyectos (
 );
 
 -- ==========================================
---  TABLA: Proyectos_Barrios
+--  17. TABLA: Proyectos_Barrios
 --  Relación N:M entre proyectos y barrios.
 --  Un proyecto puede impactar varios barrios.
 -- ==========================================
@@ -370,10 +370,12 @@ CREATE TABLE proyectos_barrios (
 );
 
 -- ============================================
--- TABLA: tipos_asociacion
+-- 18. TABLA: tipos_asociacion
 -- Contiene los tipos o clasificaciones de asociaciones.
--- Ejemplo: "Cooperativa", "Fundación", "Asociación Civil"
 -- ============================================
+-- 1. Consorcio
+-- 2. Union temporal
+----- PENDIENTE CSV -----
 CREATE TABLE tipos_asociacion (
     id_tipo_asociacion SERIAL PRIMARY KEY,           -- Identificador único
     nombre_tipo_de_asociacion VARCHAR(100) NOT NULL, -- Nombre del tipo de asociación
@@ -382,10 +384,12 @@ CREATE TABLE tipos_asociacion (
 );
 
 -- ============================================
--- TABLA: asociaciones
+-- 19. TABLA: asociaciones
 -- Registra las asociaciones con su NIT y nombre.
 -- Cada asociación pertenece a un tipo.
 -- ============================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE asociaciones (
     id_asociacion SERIAL PRIMARY KEY,         -- Identificador único
     nit VARCHAR(14) UNIQUE NOT NULL,          -- Número de identificación tributaria
@@ -401,7 +405,7 @@ CREATE TABLE asociaciones (
 );
 
 -- ============================================
--- TABLA: tipo_persona
+-- 20. TABLA: tipo_persona
 -- Clasifica los tipos de persona dentro del sistema.
 -- ============================================
 -- 1. Natural
@@ -413,7 +417,7 @@ CREATE TABLE tipo_persona (
 );
 
 -- ============================================
--- TABLA: personas
+-- 21. TABLA: personas
 -- Almacena la información básica de las personas.
 -- Incluye FK a tipo_persona.
 -- ============================================
@@ -432,7 +436,7 @@ CREATE TABLE personas (
 );
 
 -- ============================================
--- TABLA: miembros_asociacion
+-- 22. TABLA: miembros_asociacion
 -- Relaciona personas con asociaciones, indicando su porcentaje de participación.
 -- ============================================
 CREATE TABLE miembros_asociacion (
@@ -454,7 +458,7 @@ CREATE TABLE miembros_asociacion (
 );
 
 -- ============================================
--- TABLA: contratista
+-- 23. TABLA: contratista
 -- Registra a las personas contratistas, que pueden estar asociadas a una asociación.
 -- ============================================
 CREATE TABLE contratista (
@@ -480,7 +484,7 @@ CREATE TABLE contratista (
 -- TABLAS DE AVANCES Y SEGUIMIENTOS
 -- ============================================
 
--- Tipos de avance
+-- 24. Tipos de avance
 CREATE TABLE tipos_avance (
     id_tipo_avance SERIAL PRIMARY KEY,
     nombre_tipo_avance VARCHAR(100) NOT NULL UNIQUE,
@@ -488,7 +492,7 @@ CREATE TABLE tipos_avance (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Avances
+-- 25. Avances
 CREATE TABLE avances (
     id_avance SERIAL PRIMARY KEY,
     id_tipo_avance INT NOT NULL REFERENCES tipos_avance(id_tipo_avance) ON DELETE CASCADE,
@@ -500,7 +504,7 @@ CREATE TABLE avances (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Tipos de seguimiento
+-- 26.Tipos de seguimiento
 CREATE TABLE tipos_seguimiento (
     id_tipo_seguimiento SERIAL PRIMARY KEY,
     nombre_tipo_seguimiento VARCHAR(100) NOT NULL UNIQUE,
@@ -508,7 +512,7 @@ CREATE TABLE tipos_seguimiento (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Estados de seguimiento
+-- 27. Estados de seguimiento
 CREATE TABLE estados_seguimientos (
     id_estado_seguimiento SERIAL PRIMARY KEY,
     nombre_estado_seguimiento VARCHAR(100) NOT NULL UNIQUE,
@@ -516,7 +520,7 @@ CREATE TABLE estados_seguimientos (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- Seguimientos
+-- 28. Seguimientos
 CREATE TABLE seguimientos (
     id_seguimiento SERIAL PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
