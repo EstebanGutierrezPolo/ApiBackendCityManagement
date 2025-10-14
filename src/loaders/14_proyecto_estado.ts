@@ -48,7 +48,7 @@ async function loadProyectosEstado(): Promise<void> {
       }
 
       const result = await client.query(
-        `INSERT INTO proyectos_estado (id_proyecto_estado, nombre_estado)
+        `INSERT INTO proyecto_estado (id_proyecto_estado, nombre_estado)
          VALUES ($1, $2)
          ON CONFLICT (id_proyecto_estado) DO UPDATE
          SET nombre_estado = EXCLUDED.nombre_estado

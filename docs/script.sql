@@ -257,9 +257,9 @@ CREATE TABLE barrios (
         ON UPDATE CASCADE
         ON DELETE SET NULL,
     nombre_barrio VARCHAR(100) NOT NULL,
-    numero_habitantes INT,
-    numero_predios INT,
-    superficie_ha NUMERIC(12,2),                  -- Hectáreas
+    numero_habitantes INT NULL,
+    numero_predios INT NULL,
+    superficie_ha NUMERIC(12,2) NULL,                  -- Hectáreas
     geom_barrio GEOMETRY(MULTIPOLYGON, 4326),     -- Polígono de la zona del barrio
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),

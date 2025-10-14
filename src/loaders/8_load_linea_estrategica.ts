@@ -12,7 +12,7 @@ interface LineaEstrategicaRow {
 }
 
 async function loadLineasEstrategicas(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/8_lineas_estrategica.csv");
+  const filePath = path.join(__dirname, "../seeders/8_linea_estrategica.csv");
   const rows: LineaEstrategicaRow[] = [];
 
   // 📥 Leer CSV
@@ -52,7 +52,7 @@ async function loadLineasEstrategicas(): Promise<void> {
       }
 
       const result = await client.query(
-        `INSERT INTO lineas_estrategicas 
+        `INSERT INTO linea_estrategica 
           (id_linea_estrategica, nombre_linea_estrategica, created_at, updated_at)
          VALUES ($1, $2, $3, $4)
          ON CONFLICT (id_linea_estrategica) DO UPDATE 
