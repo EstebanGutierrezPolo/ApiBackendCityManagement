@@ -11,7 +11,7 @@ interface ProyectoSubestadoRow {
 }
 
 async function loadProyectosSubestado(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/15_proyectos_subestado.csv");
+  const filePath = path.join(__dirname, "../seeders/15_proyecto_subestado.csv");
   const rows: ProyectoSubestadoRow[] = [];
 
   // 📥 Leer CSV
@@ -50,7 +50,7 @@ async function loadProyectosSubestado(): Promise<void> {
       }
 
       const result = await client.query(
-        `INSERT INTO proyectos_subestado (id_proyecto_subestado, id_proyecto_estado, nombre_subestado)
+        `INSERT INTO proyecto_subestado (id_proyecto_subestado, id_proyecto_estado, nombre_subestado)
          VALUES ($1, $2, $3)
          ON CONFLICT (id_proyecto_subestado) DO UPDATE
          SET id_proyecto_estado = EXCLUDED.id_proyecto_estado,

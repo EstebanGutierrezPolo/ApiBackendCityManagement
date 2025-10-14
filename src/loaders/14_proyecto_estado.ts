@@ -10,7 +10,7 @@ interface ProyectoEstadoRow {
 }
 
 async function loadProyectosEstado(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/14_proyectos_estado.csv");
+  const filePath = path.join(__dirname, "../seeders/14_proyecto_estado.csv");
   const rows: ProyectoEstadoRow[] = [];
 
   // 📥 Leer CSV

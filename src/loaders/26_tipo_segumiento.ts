@@ -10,7 +10,7 @@ interface TipoSeguimientoRow {
 }
 
 async function loadTiposSeguimiento(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/tipos_seguimiento.csv");
+  const filePath = path.join(__dirname, "../seeders/tipo_seguimiento.csv");
   const rows: TipoSeguimientoRow[] = [];
 
   // 📥 Leer CSV

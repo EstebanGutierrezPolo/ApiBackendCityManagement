@@ -10,7 +10,7 @@ interface TipoPersonaRow {
 }
 
 async function loadTiposPersona(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/20_tipos_persona.csv");
+  const filePath = path.join(__dirname, "../seeders/20_tipo_persona.csv");
   const rows: TipoPersonaRow[] = [];
 
   // 📥 Leer CSV
