@@ -320,6 +320,8 @@ CREATE TABLE proyecto_estado (
     -- 4.1. Terminado
     -- 4.2. Entregado
     -- 4.3. Liquidado
+----- COMPLETADO CSV -----
+
 CREATE TABLE proyecto_subestado (
     id_proyecto_subestado SERIAL PRIMARY KEY,
     id_proyecto_estado INT REFERENCES proyecto_estado(id_proyecto_estado)
@@ -335,6 +337,8 @@ CREATE TABLE proyecto_subestado (
 --  16. TABLA: Proyectos
 --  Contiene la información general del proyecto.
 -- ==========================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE proyectos (
     id_proyecto SERIAL PRIMARY KEY,
     id_programa INT REFERENCES programas(id_programa)
@@ -357,6 +361,8 @@ CREATE TABLE proyectos (
 --  Relación N:M entre proyectos y barrios.
 --  Un proyecto puede impactar varios barrios.
 -- ==========================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE proyectos_barrios (
     id_proyecto INT NOT NULL REFERENCES proyectos(id_proyecto)
         ON UPDATE CASCADE
@@ -408,6 +414,7 @@ CREATE TABLE asociaciones (
 -- ============================================
 -- 1. Natural
 -- 2. Jurídica
+----- COMPLETADO CSV -----
 
 CREATE TABLE tipo_persona (
     id_tipo_persona SERIAL PRIMARY KEY,       -- Identificador único
@@ -419,6 +426,8 @@ CREATE TABLE tipo_persona (
 -- Almacena la información básica de las personas.
 -- Incluye FK a tipo_persona.
 -- ============================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE personas (
     id_persona SERIAL PRIMARY KEY,                  -- Identificador único
     nombre_persona VARCHAR(100) NOT NULL,           -- Nombre de la persona
@@ -437,6 +446,8 @@ CREATE TABLE personas (
 -- 22. TABLA: miembros_asociacion
 -- Relaciona personas con asociaciones, indicando su porcentaje de participación.
 -- ============================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE miembros_asociacion (
     id_miembros_asociacion SERIAL PRIMARY KEY,      -- Identificador único
     id_persona INT NOT NULL,                        -- FK a persona
@@ -459,6 +470,8 @@ CREATE TABLE miembros_asociacion (
 -- 23. TABLA: contratista
 -- Registra a las personas contratistas, que pueden estar asociadas a una asociación.
 -- ============================================
+----- PENDIENTE CSV -----
+
 CREATE TABLE contratista (
     id_contratista SERIAL PRIMARY KEY,        -- Identificador único
     id_persona INT NOT NULL,                  -- FK a persona
@@ -483,14 +496,18 @@ CREATE TABLE contratista (
 -- ============================================
 
 -- 24. Tipos de avance
+-- 1. Avance fisico
+-- 2. Avance financiero
+----- COMPLETADO CSV -----
+
 CREATE TABLE tipos_avance (
     id_tipo_avance SERIAL PRIMARY KEY,
-    nombre_tipo_avance VARCHAR(100) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    nombre_tipo_avance VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- 25. Avances
+----- PENDIENTE CSV -----
+
 CREATE TABLE avances (
     id_avance SERIAL PRIMARY KEY,
     id_tipo_avance INT NOT NULL REFERENCES tipos_avance(id_tipo_avance) ON DELETE CASCADE,
@@ -503,22 +520,26 @@ CREATE TABLE avances (
 );
 
 -- 26.Tipos de seguimiento
+-- 1. Actividad
+-- 2. Ruta critica
+----- COMPLETADO CSV -----
+
 CREATE TABLE tipos_seguimiento (
     id_tipo_seguimiento SERIAL PRIMARY KEY,
-    nombre_tipo_seguimiento VARCHAR(100) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    nombre_tipo_seguimiento VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- 27. Estados de seguimiento
+----- PENDIENTE CSV -----
+----- PREGUNTAR A LUCHO -----
 CREATE TABLE estados_seguimientos (
     id_estado_seguimiento SERIAL PRIMARY KEY,
-    nombre_estado_seguimiento VARCHAR(100) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    nombre_estado_seguimiento VARCHAR(100) NOT NULL UNIQUE
 );
 
 -- 28. Seguimientos
+----- PENDIENTE CSV -----
+
 CREATE TABLE seguimientos (
     id_seguimiento SERIAL PRIMARY KEY,
     titulo VARCHAR(255) NOT NULL,
