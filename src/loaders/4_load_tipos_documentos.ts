@@ -10,7 +10,7 @@ interface TipoDocumentoRow {
 }
 
 async function loadTiposDocumento(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/tipos_documento.csv");
+  const filePath = path.join(__dirname, "../seeders/4_tipos_documento.csv");
   const rows: TipoDocumentoRow[] = [];
 
   // Leer CSV

@@ -10,7 +10,7 @@ interface SectorRow {
 }
 
 async function loadSectores(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/sectores.csv");
+  const filePath = path.join(__dirname, "../seeders/6_sectores.csv");
   const rows: SectorRow[] = [];
 
   // Leer CSV

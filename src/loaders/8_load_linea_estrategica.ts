@@ -12,7 +12,7 @@ interface LineaEstrategicaRow {
 }
 
 async function loadLineasEstrategicas(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/lineas_estrategicas.csv");
+  const filePath = path.join(__dirname, "../seeders/8_lineas_estrategica.csv");
   const rows: LineaEstrategicaRow[] = [];
 
   // 📥 Leer CSV

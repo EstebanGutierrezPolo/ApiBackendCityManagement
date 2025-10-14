@@ -10,7 +10,7 @@ interface LocalidadRow {
 }
 
 async function loadLocalidades(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/localidades.csv");
+  const filePath = path.join(__dirname, "../seeders/11_localidades.csv");
   const rows: LocalidadRow[] = [];
 
   // 📥 Leer CSV

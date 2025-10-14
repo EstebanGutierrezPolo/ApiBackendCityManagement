@@ -10,7 +10,7 @@ interface DependenciaRow {
 }
 
 async function loadDependencias(): Promise<void> {
-  const filePath = path.join(__dirname, "../data/dependencias.csv");
+  const filePath = path.join(__dirname, "../seeders/7_dependencias.csv");
   const rows: DependenciaRow[] = [];
 
   // 📥 Leer CSV
