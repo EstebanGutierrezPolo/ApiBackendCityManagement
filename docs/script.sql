@@ -31,6 +31,8 @@ CREATE TABLE cargos (
 -- 1. Activo 
 -- 2. Inactivo
 -- 3. Bloqueado.
+
+----- COMPLETADO CSV ----- 
 CREATE TABLE estados_usuario (
     id_estado_usuario SERIAL PRIMARY KEY, -- Identificador único del estado (PK).
     nombre_estado_usuario VARCHAR(30) UNIQUE NOT NULL, -- Nombre del estado.
@@ -44,12 +46,15 @@ CREATE TABLE estados_usuario (
 -- 5. 'REGISTRO CIVIL' 
 -- 6.'TARJETA DE IDENTIDAD'.
 -- 7. 'NIT'
+
+----- COMPLETADO CSV -----
 CREATE TABLE tipos_documento (
     id_tipo_documento SERIAL PRIMARY KEY, -- Identificador único del tipo de documento (PK).
     tipo_documento VARCHAR(100) UNIQUE NOT NULL, -- Nombre del tipo de documento.
 );
 
--- Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
+-- 5. Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
+----- PENDIENTE CSV -----
 CREATE TABLE usuarios (
     id_usuario SERIAL PRIMARY KEY, -- Identificador único del usuario (PK).
     id_rol INT NOT NULL REFERENCES roles(id_rol) ON UPDATE CASCADE ON DELETE RESTRICT, -- FK a roles. Define el nivel de acceso.
@@ -77,7 +82,7 @@ CREATE TABLE usuarios (
 -----------------------------------------------------------------------------------------------------------
 
 -- ============================================
--- TABLA: Sectores
+-- 6. TABLA: Sectores
 -- Contiene los sectores institucionales a los que pueden pertenecer los programas
 -- ============================================
 -- 1. Agua_potable y saneamiento básico 
@@ -92,14 +97,14 @@ CREATE TABLE usuarios (
 -- 10. Seguridad
 -- 11. Transporte
 -- 12. Vivienda
-
+----- COMPLETADO CSV -----
 CREATE TABLE sectores (
     id_sector SERIAL PRIMARY KEY,
     nombre_sector VARCHAR(100) NOT NULL UNIQUE,
 );
 
 -- ============================================
--- TABLA: Dependencias
+-- 7. TABLA: Dependencias
 -- Define las dependencias o áreas responsables dentro de la organización
 -- ============================================
 -- 1. ADI
@@ -110,20 +115,21 @@ CREATE TABLE sectores (
 -- 6. Obras publicas
 -- 7. PDO
 -- 8. Siembra+
+----- COMPLETADO CSV -----
 CREATE TABLE dependencias (
     id_dependencia SERIAL PRIMARY KEY,
     nombre_dependencia VARCHAR(100) NOT NULL UNIQUE,
 );
 
 -- ============================================
--- TABLA: Línea Estratégica
+-- 8. TABLA: Línea Estratégica
 -- Contiene las líneas estratégicas de planeación institucional
 -- ============================================
 -- 1. Línea económica ciudad dinámica
 -- 2. Línea social ciudad segura y solidaria
 -- 3. Línea ambiental ciudad ambiental y sostenible
 -- 4. Línea Político-administrativa gobierno eficiente y responsable
-
+----- COMPLETADO CSV -----
 CREATE TABLE linea_estrategica (
     id_linea_estrategica SERIAL PRIMARY KEY,
     nombre_linea_estrategica TEXT NOT NULL UNIQUE,
@@ -132,7 +138,7 @@ CREATE TABLE linea_estrategica (
 );
 
 -- ============================================
--- TABLA: Línea Estratégica - Sectores (relación N:M)
+-- 9. TABLA: Línea Estratégica - Sectores (relación N:M)
 -- Relaciona los sectores con sus líneas estratégicas correspondientes
 -- ============================================
 CREATE TABLE linea_estrategica_sectores (
@@ -158,7 +164,7 @@ CREATE TABLE linea_estrategica_sectores (
 );
 
 -- ============================================
--- TABLA: Programas
+-- 10. TABLA: Programas
 -- Cada programa pertenece a un sector y a una dependencia
 -- ============================================
 -- 1. Agua potable y saneamiento básico
@@ -191,7 +197,7 @@ CREATE TABLE linea_estrategica_sectores (
 -- 28. SITP
 -- 29. Transformacion de entornos urbanos
 -- 30. Universidad
-
+----- COMPLETADO CSV -----
 CREATE TABLE programas (
     id_programa SERIAL PRIMARY KEY,
     nombre_programa VARCHAR(100) NOT NULL,
@@ -220,7 +226,7 @@ CREATE TABLE programas (
 -----------------------------------------------------------------------------------------------------------
 
 -- ==========================================
---  TABLA: Localidades
+--  11. TABLA: Localidades
 --  Contiene las divisiones geográficas mayores.
 -- ==========================================
 -- 1. Localidad Riomar
@@ -229,7 +235,7 @@ CREATE TABLE programas (
 -- 4. Localidad Suroriente
 -- 5. Localidad Metropolitana
 -- 6. Todas
-
+----- COMPLETADO CSV -----
 CREATE TABLE localidades (
     id_localidad SERIAL PRIMARY KEY,
     nombre_localidad VARCHAR(100) NOT NULL UNIQUE,
@@ -239,11 +245,12 @@ CREATE TABLE localidades (
 );
 
 -- ==========================================
---  TABLA: Barrios
+--  12. TABLA: Barrios
 --  Contiene subdivisiones dentro de una localidad.
 -- (Actualizar barrios)
 -- ==========================================
 -- TODOS LOS BARRIOS
+----- PENDIENTE CSV -----
 CREATE TABLE barrios (
     id_barrio SERIAL PRIMARY KEY,
     id_localidad INT REFERENCES localidades(id_localidad)
@@ -260,10 +267,11 @@ CREATE TABLE barrios (
 );
 
 -- ==========================================
---  TABLA: Localidades_Barrios
+--  13. TABLA: Localidades_Barrios
 --  Relación explícita N:M entre Localidades y Barrios.
 --  (Aunque normalmente un barrio pertenece a una sola localidad, esto deja flexibilidad).
 -- ==========================================
+----- PENDIENTE CSV -----
 CREATE TABLE localidades_barrios (
     id_localidad INT NOT NULL REFERENCES localidades(id_localidad)
         ON UPDATE CASCADE
@@ -277,13 +285,14 @@ CREATE TABLE localidades_barrios (
 );
 
 -- ==========================================
---  TABLA: Proyecto_estado
+--  14.TABLA: Proyecto_estado
 --  Define los estados generales de un proyecto 
 -- ==========================================
 -- 1. Formulación
 -- 2. Precontractual
 -- 2. Contractual
 -- 3. Postcontractual
+----- COMPLETADO CSV -----
 CREATE TABLE proyecto_estado (
     id_proyecto_estado SERIAL PRIMARY KEY,
     nombre_estado VARCHAR(50) NOT NULL UNIQUE,
@@ -292,7 +301,7 @@ CREATE TABLE proyecto_estado (
 );
 
 -- ==========================================
---  TABLA: Proyecto_subestado
+--  15. TABLA: Proyecto_subestado
 --  Subcategorías del estado, asociadas al proyecto_estado.
 -- ==========================================
 -- 1. Formulación
@@ -323,7 +332,7 @@ CREATE TABLE proyecto_subestado (
 );
 
 -- ==========================================
---  TABLA: Proyectos
+--  16. TABLA: Proyectos
 --  Contiene la información general del proyecto.
 -- ==========================================
 CREATE TABLE proyectos (

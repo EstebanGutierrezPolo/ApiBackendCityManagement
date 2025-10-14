@@ -1,0 +1,13 @@
+id_proyecto_subestado,id_proyecto_estado,nombre_subestado
+1,1,Proyecto fase I prefactibilidad
+2,1,Proyecto fase II factibilidad
+3,1,Proyecto fase III diseños definitivos y detalles
+4,2,En estructuracion
+5,2,En convocatoria
+6,2,Perfeccionamiento y legalizacion
+7,3,En ejecucion
+8,3,Suspendido
+9,3,Terminado
+10,4,Terminado
+11,4,Entregado
+12,4,Liquidado
