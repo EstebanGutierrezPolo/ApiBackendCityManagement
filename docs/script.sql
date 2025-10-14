@@ -668,3 +668,57 @@ CREATE TABLE contratista (
         ON UPDATE CASCADE
         ON DELETE SET NULL
 );
+
+
+-- ============================================
+-- TABLAS DE AVANCES Y SEGUIMIENTOS
+-- ============================================
+
+-- Tipos de avance
+CREATE TABLE tipos_avance (
+    id_tipo_avance SERIAL PRIMARY KEY,
+    nombre_tipo_avance VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Avances
+CREATE TABLE avances (
+    id_avance SERIAL PRIMARY KEY,
+    id_tipo_avance INT NOT NULL REFERENCES tipos_avance(id_tipo_avance) ON DELETE CASCADE,
+    id_usuario INT NOT NULL,  -- Se asume referencia a una tabla usuarios
+    id_proyecto INT NOT NULL, -- Se asume referencia a una tabla proyectos
+    porcentaje_avance DECIMAL(5,2) DEFAULT 0 CHECK (porcentaje_avance >= 0 AND porcentaje_avance <= 100),
+    porcentaje_programado DECIMAL(5,2) DEFAULT 0 CHECK (porcentaje_programado >= 0 AND porcentaje_programado <= 100),
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Tipos de seguimiento
+CREATE TABLE tipos_seguimiento (
+    id_tipo_seguimiento SERIAL PRIMARY KEY,
+    nombre_tipo_seguimiento VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Estados de seguimiento
+CREATE TABLE estados_seguimientos (
+    id_estado_seguimiento SERIAL PRIMARY KEY,
+    nombre_estado_seguimiento VARCHAR(100) NOT NULL UNIQUE,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- Seguimientos
+CREATE TABLE seguimientos (
+    id_seguimiento SERIAL PRIMARY KEY,
+    titulo VARCHAR(255) NOT NULL,
+    descripcion TEXT,
+    id_usuario INT NOT NULL,  -- referencia a usuarios
+    id_tipo_seguimiento INT NOT NULL REFERENCES tipos_seguimiento(id_tipo_seguimiento) ON DELETE RESTRICT,
+    id_estado_seguimiento INT NOT NULL REFERENCES estados_seguimientos(id_estado_seguimiento) ON DELETE RESTRICT,
+    id_proyecto INT NOT NULL,  -- referencia a proyectos
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
