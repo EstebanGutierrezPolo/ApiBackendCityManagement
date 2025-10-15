@@ -254,8 +254,6 @@ CREATE TABLE localidades (
 --  Contiene subdivisiones dentro de una localidad.
 -- (Actualizar barrios)
 -- ==========================================
-BEGIN;
-
 -- ⿡ Renombrar columnas para ajustarlas a la nueva estructura
 ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
 ALTER TABLE public.barrios RENAME COLUMN name TO nombre_barrio;
@@ -310,9 +308,7 @@ CREATE TABLE localidades_barrios (
 ----- COMPLETADO CSV -----
 CREATE TABLE proyecto_estado (
     id_proyecto_estado SERIAL PRIMARY KEY,
-    nombre_estado VARCHAR(50) NOT NULL UNIQUE,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+    nombre_estado VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- ==========================================
@@ -564,5 +560,5 @@ CREATE TABLE seguimientos (
     id_estado_seguimiento INT NOT NULL REFERENCES estados_seguimientos(id_estado_seguimiento) ON DELETE RESTRICT,
     id_proyecto INT NOT NULL,  -- referencia a proyectos
     created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+	updated_at TIMESTAMPTZ DEFAULT NOW()
 );
