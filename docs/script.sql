@@ -241,44 +241,78 @@ CREATE TABLE programas (
 -- 5. Localidad Metropolitana
 -- 6. Todas
 ----- COMPLETADO CSV -----
-CREATE TABLE localidades (
-    id_localidad SERIAL PRIMARY KEY,
-    nombre_localidad VARCHAR(100) NOT NULL UNIQUE,
-    geom_localidad GEOMETRY(MULTIPOLYGON, 4326),  -- Geometría con SRID 4326 (WGS84)
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
-);
+-- CREATE TABLE localidades (
+--     id_localidad SERIAL PRIMARY KEY,
+--     nombre_localidad VARCHAR(100) NOT NULL UNIQUE,
+--     geom_localidad GEOMETRY(MULTIPOLYGON, 4326),  -- Geometría con SRID 4326 (WGS84)
+--     created_at TIMESTAMPTZ DEFAULT NOW(),
+--     updated_at TIMESTAMPTZ DEFAULT NOW()
+-- );
+-- Renombrar la tabla
+ALTER TABLE localidades_bq RENAME TO localidades;
 
+-- Renombrar columnas para mantener consistencia
+ALTER TABLE localidades
+    RENAME COLUMN localidad TO nombre_localidad;
+
+-- Renombrar columnas de área
+ALTER TABLE localidades
+    RENAME COLUMN area_has TO superficie_ha;
+
+ALTER TABLE localidades
+    RENAME COLUMN area_m2 TO superficie_m2;
+
+-- Eliminar columnas innecesarias
+ALTER TABLE localidades
+    DROP COLUMN shape_leng,
+    DROP COLUMN shape_area;
+
+-- Renombrar la columna de geometría
+ALTER TABLE localidades
+    RENAME COLUMN geom TO geom_localidad;
+
+-- Asegurar tipo correcto de geometría (MULTIPOLYGON con Z y SRID 4326)
+ALTER TABLE localidades
+    ALTER COLUMN geom_localidad TYPE geometry(MULTIPOLYGONZ, 4326)
+    USING ST_Force3D(geom_localidad);
+
+-- Agregar timestamps si no existen
+ALTER TABLE localidades
+    ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ DEFAULT NOW(),
+    ADD COLUMN IF NOT EXISTS updated_at TIMESTAMPTZ DEFAULT NOW();
+
+-- Renombrar la columna de ID
+ALTER TABLE localidades
+    RENAME COLUMN gid TO id_localidad;
 -- ==========================================
 --  12. TABLA: Barrios
 --  Contiene subdivisiones dentro de una localidad.
 -- (Actualizar barrios)
 -- ==========================================
--- ⿡ Renombrar columnas para ajustarlas a la nueva estructura
+--  Renombrar columnas para ajustarlas a la nueva estructura
 ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
-ALTER TABLE public.barrios RENAME COLUMN name TO nombre_barrio;
+ALTER TABLE public.barrios RENAME COLUMN barrio TO nombre_barrio;
 ALTER TABLE public.barrios RENAME COLUMN area_has TO superficie_ha;
 ALTER TABLE public.barrios RENAME COLUMN geom TO geom_barrio;
 
--- ⿢ Eliminar columnas innecesarias
+--  Eliminar columnas innecesarias
 ALTER TABLE public.barrios 
-    DROP COLUMN id,
-    DROP COLUMN nombre,
-    DROP COLUMN objectid_1;
+    DROP COLUMN localidad,
+    DROP COLUMN area_km2;
 
--- ⿣ Agregar las columnas nuevas
+--  Agregar las columnas nuevas
 ALTER TABLE public.barrios
     ADD COLUMN numero_habitantes INT NULL,
     ADD COLUMN numero_predios INT NULL,
     ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW(),
     ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
 
--- ⿤ Corregir la geometría (tu shapefile tiene 3D, así que forzamos a 2D para evitar errores)
+--  Corregir la geometría (tu shapefile tiene 3D, así que forzamos a 2D para evitar errores)
 ALTER TABLE public.barrios 
     ALTER COLUMN geom_barrio TYPE geometry(MULTIPOLYGON, 4326)
     USING ST_Force2D(ST_SetSRID(geom_barrio, 4326));
 
--- ⿥ Asegurar clave primaria correcta
+--  Asegurar clave primaria correcta
 ALTER TABLE public.barrios DROP CONSTRAINT IF EXISTS barrios_pkey;
 ALTER TABLE public.barrios ADD CONSTRAINT barrios_pkey PRIMARY KEY (id_barrio);
 -- ==========================================
