@@ -3,8 +3,6 @@
 ---------------------------------------Habilitar extensiones-----------------------------------------
 -----------------------------------------------------------------------------------------------------------
 
-CREATE EXTENSION postgis;
-SELECT postgis_full_version();
 ------ EJECUTAR PRIMERO TABLA POLIGONOS -------
 -----------------------------------------------------------------------------------------------------------
 ---------------------------------------Seccion Usuarios aplicativo-----------------------------------------
@@ -257,19 +255,35 @@ CREATE TABLE localidades (
 --  Contiene subdivisiones dentro de una localidad.
 -- (Actualizar barrios)
 -- ==========================================
--- TODOS LOS BARRIOS
------ COMPLETADO SCRIPT -----
--- CREATE TABLE barrios (
---    id_barrio SERIAL PRIMARY KEY,
---    nombre_barrio VARCHAR(100) NOT NULL,
---    numero_habitantes INT NULL,
---    numero_predios INT NULL,
---    superficie_ha NUMERIC(12,2) NULL,                  -- Hectáreas
---    geom_barrio GEOMETRY(MULTIPOLYGON, 4326),     -- Polígono de la zona del barrio
---    created_at TIMESTAMPTZ DEFAULT NOW(),
---    updated_at TIMESTAMPTZ DEFAULT NOW(),
--- );
+BEGIN;
 
+-- 1️⃣ Renombrar columnas para ajustarlas a la nueva estructura
+ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
+ALTER TABLE public.barrios RENAME COLUMN nombre TO nombre_barrio;
+ALTER TABLE public.barrios RENAME COLUMN area_has TO superficie_ha;
+ALTER TABLE public.barrios RENAME COLUMN geom TO geom_barrio;
+
+-- 2️⃣ Eliminar columnas innecesarias
+ALTER TABLE public.barrios 
+    DROP COLUMN id,
+    DROP COLUMN name,
+    DROP COLUMN objectid_1;
+
+-- 3️⃣ Agregar las columnas nuevas
+ALTER TABLE public.barrios
+    ADD COLUMN numero_habitantes INT NULL,
+    ADD COLUMN numero_predios INT NULL,
+    ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW(),
+    ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
+
+-- 4️⃣ Corregir la geometría (tu shapefile tiene 3D, así que forzamos a 2D para evitar errores)
+ALTER TABLE public.barrios 
+    ALTER COLUMN geom_barrio TYPE geometry(MULTIPOLYGON, 4326)
+    USING ST_Force2D(ST_SetSRID(geom_barrio, 4326));
+
+-- 5️⃣ Asegurar clave primaria correcta
+ALTER TABLE public.barrios DROP CONSTRAINT IF EXISTS barrios_pkey;
+ALTER TABLE public.barrios ADD CONSTRAINT barrios_pkey PRIMARY KEY (id_barrio);
 -- ==========================================
 --  13. TABLA: Localidades_Barrios
 --  Relación explícita N:M entre Localidades y Barrios.
