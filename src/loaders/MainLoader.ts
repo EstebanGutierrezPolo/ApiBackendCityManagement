@@ -14,6 +14,7 @@ import loadProgramas from "./10_programas";
 import loadBarriosLocalidad from "./13_localidades_barrio";
 import loadProyectosEstado from "./14_proyecto_estado";
 import loadProyectosSubestado from "./15_proyecto_subestado";
+import loadProyectos from "./16_proyectos";
 import loadTiposAsociacion from "./18_tipo_asociacion";
 import loadTiposPersona from "./20_tipo_persona";
 import loadTiposAvance from "./24_tipo_avance";
@@ -35,6 +36,7 @@ async function loadAll() {
     await loadBarriosLocalidad();
     await loadProyectosEstado();
     await loadProyectosSubestado();
+    await loadProyectos();
     await loadTiposAsociacion();
     await loadTiposPersona();
     await loadTiposAvance();

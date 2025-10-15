@@ -386,17 +386,19 @@ CREATE TABLE proyecto_subestado (
 
 CREATE TABLE proyectos (
     id_proyecto SERIAL PRIMARY KEY,
-    id_programa INT REFERENCES programas(id_programa)
+    nombre_proyecto TEXT NULL,
+    direccion TEXT NULL,
+    id_programa INT NOT NULL REFERENCES programas(id_programa)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    id_proyecto_estado INT REFERENCES proyecto_estado(id_proyecto_estado)
+    id_proyecto_estado INT NULL REFERENCES proyecto_estado(id_proyecto_estado)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    id_proyecto_subestado INT REFERENCES proyecto_subestado(id_proyecto_subestado)
+    id_proyecto_subestado INT NULL REFERENCES proyecto_subestado(id_proyecto_subestado)
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    direccion TEXT,
-    geom_proyecto GEOMETRY(POINT, 4326),          -- Coordenada principal del proyecto
+    coordenada_x VARCHAR(255) NULL,
+    coordenada_y VARCHAR(255) NULL,
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
