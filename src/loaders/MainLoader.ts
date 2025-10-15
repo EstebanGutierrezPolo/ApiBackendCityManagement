@@ -2,6 +2,8 @@
 import pool from "../config/db";
 
 // Importar todos los loaders que has creado
+import loadRoles from "./1_load_roles";
+import loadCargos from "./2_load_cargos";
 import loadEstadosUsuario from "./3_load_estados_usuarios";
 import loadTiposDocumento from "./4_load_tipos_documentos";
 import loadSectores from "./6_load_sectores";
@@ -21,6 +23,8 @@ import loadTiposSeguimiento from "./26_tipo_segumiento";
 async function loadAll() {
   try {
     console.log("🚀 Iniciando carga de todos los CSVs...");
+    await loadRoles();
+    await loadCargos();
     await loadEstadosUsuario();
     await loadTiposDocumento();
     await loadSectores();
