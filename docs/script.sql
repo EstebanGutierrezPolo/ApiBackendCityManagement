@@ -5,14 +5,18 @@
 
 CREATE EXTENSION postgis;
 SELECT postgis_full_version();
-
+------ EJECUTAR PRIMERO TABLA POLIGONOS -------
 -----------------------------------------------------------------------------------------------------------
 ---------------------------------------Seccion Usuarios aplicativo-----------------------------------------
 -----------------------------------------------------------------------------------------------------------
 
 -- Tabla: roles - Define los roles (permisos) de los usuarios en la aplicación (Ej: Administrador, Alcalde, Consultor) 
 ----- (Por confirmar roles) -----.
------ FALTANTE -----
+-- 1. Super Admin - - - Los desarrolladores van a ser super admins
+-- 2. Admin - - - El grupo de trabajo van a ser los Admin (Ellos subiran la data)
+-- 3. Gerencial - - - Los gerenciales van a ser el Alcalde o la Gerente (Ellos van a tener una vista especial)
+----- COMPLETADO CSV ----- 
+
 CREATE TABLE roles (
     id_rol SERIAL PRIMARY KEY, -- Identificador único del rol (PK).
     nombre_rol VARCHAR(50) UNIQUE NOT NULL -- Nombre descriptivo del rol.
@@ -20,7 +24,10 @@ CREATE TABLE roles (
 
 -- Tabla: cargos - Define los cargos que ocupan los usuarios dentro de la Alcaldía (Ej: Coordinador, Director de Proyecto) 
 ----- (Por confirmar cargos) ------.
------ FALTANTE -----
+-- 1. Alcalde
+-- 2. Gerente
+-- 3. Asesor - - - Todos los otros usuarios que no son el alcalde o la gerente
+----- COMPLETADO CSV ----- 
 
 CREATE TABLE cargos (
     id_cargo SERIAL PRIMARY KEY, -- Identificador único del cargo (PK).
@@ -31,8 +38,8 @@ CREATE TABLE cargos (
 -- 1. Activo 
 -- 2. Inactivo
 -- 3. Bloqueado.
-
 ----- COMPLETADO CSV ----- 
+
 CREATE TABLE estados_usuario (
     id_estado_usuario SERIAL PRIMARY KEY, -- Identificador único del estado (PK).
     nombre_estado_usuario VARCHAR(30) UNIQUE NOT NULL -- Nombre del estado.
@@ -55,6 +62,7 @@ CREATE TABLE tipos_documento (
 
 -- 5. Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
 ----- PENDIENTE CSV -----
+
 CREATE TABLE usuarios (
     id_usuario SERIAL PRIMARY KEY, -- Identificador único del usuario (PK).
     id_rol INT NOT NULL REFERENCES roles(id_rol) ON UPDATE CASCADE ON DELETE RESTRICT, -- FK a roles. Define el nivel de acceso.
@@ -250,12 +258,9 @@ CREATE TABLE localidades (
 -- (Actualizar barrios)
 -- ==========================================
 -- TODOS LOS BARRIOS
------ PENDIENTE CSV -----
+----- COMPLETADO SCRIPT -----
 CREATE TABLE barrios (
     id_barrio SERIAL PRIMARY KEY,
-    id_localidad INT REFERENCES localidades(id_localidad)
-        ON UPDATE CASCADE
-        ON DELETE SET NULL,
     nombre_barrio VARCHAR(100) NOT NULL,
     numero_habitantes INT NULL,
     numero_predios INT NULL,
@@ -263,7 +268,6 @@ CREATE TABLE barrios (
     geom_barrio GEOMETRY(MULTIPOLYGON, 4326),     -- Polígono de la zona del barrio
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
-    CONSTRAINT uq_barrio_localidad UNIQUE (nombre_barrio, id_localidad)
 );
 
 -- ==========================================
