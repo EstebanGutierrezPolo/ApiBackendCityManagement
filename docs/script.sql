@@ -418,7 +418,7 @@ CREATE TABLE proyectos_barrios (
 -- ============================================
 -- 1. Consorcio
 -- 2. Union temporal
------ PENDIENTE CSV -----
+----- COMPLETADO CSV -----
 CREATE TABLE tipos_asociacion (
     id_tipo_asociacion SERIAL PRIMARY KEY,           -- Identificador único
     nombre_tipo_de_asociacion VARCHAR(100) NOT NULL -- Nombre del tipo de asociación
