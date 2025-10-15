@@ -1,4 +1,3 @@
-// src/loaders/load-proyectos-subestado.ts
 import fs from "fs";
 import path from "path";
 import csv from "csv-parser";
@@ -6,8 +5,7 @@ import pool from "../config/db";
 
 interface ProyectoSubestadoRow {
   id_proyecto_subestado?: string;
-  id_proyecto_estado?: string;
-  nombre_subestado: string;
+  nombre_subestado?: string;
 }
 
 async function loadProyectosSubestado(): Promise<void> {
@@ -17,7 +15,7 @@ async function loadProyectosSubestado(): Promise<void> {
   // 📥 Leer CSV
   await new Promise<void>((resolve, reject) => {
     fs.createReadStream(filePath)
-      .pipe(csv())
+      .pipe(csv({ separator: "," })) // Asegura separador correcto
       .on("data", (data: ProyectoSubestadoRow) => rows.push(data))
       .on("end", () => resolve())
       .on("error", (err) => reject(err));
@@ -40,28 +38,33 @@ async function loadProyectosSubestado(): Promise<void> {
     await client.query("BEGIN");
 
     for (const r of rows) {
-      const idSubestado = r.id_proyecto_subestado ? Number(r.id_proyecto_subestado) : undefined;
-      const idEstado = r.id_proyecto_estado ? Number(r.id_proyecto_estado) : undefined;
+      const idSubestado = r.id_proyecto_subestado ? Number(r.id_proyecto_subestado) : null;
       const nombre = r.nombre_subestado?.trim();
 
-      if (!idSubestado || !idEstado || !nombre) {
+      if (!idSubestado || !nombre) {
         skipCount++;
         continue;
       }
 
-      const result = await client.query(
-        `INSERT INTO proyecto_subestado (id_proyecto_subestado, id_proyecto_estado, nombre_subestado)
-         VALUES ($1, $2, $3)
-         ON CONFLICT (id_proyecto_subestado) DO UPDATE
-         SET id_proyecto_estado = EXCLUDED.id_proyecto_estado,
-             nombre_subestado = EXCLUDED.nombre_subestado
-         RETURNING xmax = 0 AS inserted;`,
-        [idSubestado, idEstado, nombre]
-      );
+      try {
+        const result = await client.query(
+          `
+          INSERT INTO proyecto_subestado (id_proyecto_subestado, nombre_subestado)
+          VALUES ($1, $2)
+          ON CONFLICT (id_proyecto_subestado) DO UPDATE
+          SET nombre_subestado = EXCLUDED.nombre_subestado
+          RETURNING xmax = 0 AS inserted;
+          `,
+          [idSubestado, nombre]
+        );
 
-      const wasInserted = result.rows[0]?.inserted;
-      if (wasInserted) insertCount++;
-      else updateCount++;
+        const wasInserted = result.rows[0]?.inserted;
+        if (wasInserted) insertCount++;
+        else updateCount++;
+      } catch (err: any) {
+        console.error(`❌ Error en fila con id_proyecto_subestado=${idSubestado}: ${err.message}`);
+        skipCount++;
+      }
     }
 
     await client.query("COMMIT");
@@ -70,7 +73,7 @@ async function loadProyectosSubestado(): Promise<void> {
     console.log(`   • Total filas en CSV: ${rows.length}`);
     console.log(`   • Insertadas nuevas: ${insertCount}`);
     console.log(`   • Actualizadas: ${updateCount}`);
-    console.log(`   • Omitidas (sin datos válidos): ${skipCount}`);
+    console.log(`   • Omitidas (sin datos válidos o con error): ${skipCount}`);
   } catch (error) {
     await client.query("ROLLBACK");
     if (error instanceof Error) {

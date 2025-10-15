@@ -369,13 +369,7 @@ CREATE TABLE proyecto_estado (
 
 CREATE TABLE proyecto_subestado (
     id_proyecto_subestado SERIAL PRIMARY KEY,
-    id_proyecto_estado INT REFERENCES proyecto_estado(id_proyecto_estado)
-        ON UPDATE CASCADE
-        ON DELETE CASCADE,
-    nombre_subestado VARCHAR(50) NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
-    CONSTRAINT uq_subestado_por_estado UNIQUE (id_proyecto_estado, nombre_subestado)
+    nombre_subestado VARCHAR(50) NOT NULL UNIQUE
 );
 
 -- ==========================================
@@ -598,3 +592,22 @@ CREATE TABLE seguimientos (
     created_at TIMESTAMPTZ DEFAULT NOW(),
 	updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- ============================================
+-- 29. TABLA: modalidades
+-- Clasifica las modalidades del contrato o proyecto.
+-- ============================================
+CREATE TABLE modalidades (
+    id_modalidad SERIAL PRIMARY KEY,            -- Identificador único de la modalidad (PK)
+    nombre_modalidad TEXT UNIQUE NOT NULL       -- Nombre descriptivo de la modalidad (ej. "Presencial", "Virtual", etc.)
+);
+
+-- ============================================
+-- 30. TABLA: tipos_contrato
+-- Clasifica los diferentes tipos de contrato.
+-- ============================================
+CREATE TABLE tipos_contrato (
+    id_tipo_contrato SERIAL PRIMARY KEY,              -- Identificador único del tipo de contrato (PK)
+    nombre_tipo_contrato VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de contrato (ej. "Fijo", "Temporal", etc.)
+);
+
