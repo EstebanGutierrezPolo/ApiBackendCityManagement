@@ -10,7 +10,6 @@ import loadLineasEstrategicas from "./8_load_linea_estrategica";
 import loadLineasEstrategicasSectores from "./9_linea_estrategica_sectores";
 import loadProgramas from "./10_programas";
 import loadLocalidades from "./11_load_localidades";
-import loadBarriosCompleto from "./12_barrios";
 import loadBarriosLocalidad from "./13_localidades_barrio";
 import loadProyectosEstado from "./14_proyecto_estado";
 import loadProyectosSubestado from "./15_proyecto_subestado";
@@ -31,7 +30,6 @@ async function loadAll() {
     await loadLineasEstrategicasSectores();
     await loadProgramas();
     await loadLocalidades();
-    await loadBarriosCompleto();
     await loadBarriosLocalidad();
     await loadProyectosEstado();
     await loadProyectosSubestado();

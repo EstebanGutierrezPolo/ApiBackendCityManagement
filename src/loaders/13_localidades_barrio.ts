@@ -1,4 +1,3 @@
-// src/loaders/load-barrios-localidad.ts
 import fs from "fs";
 import path from "path";
 import csv from "csv-parser";
@@ -30,11 +29,11 @@ async function loadBarriosLocalidad(): Promise<void> {
   }
 
   const client = await pool.connect();
-  let updateCount = 0;
+  let insertCount = 0;
   let skipCount = 0;
 
   try {
-    console.log("🌱 Iniciando actualización de barrios con localidades...");
+    console.log("🌱 Iniciando carga de localidades_barrios...");
     await client.query("BEGIN");
 
     for (const r of rows) {
@@ -46,29 +45,29 @@ async function loadBarriosLocalidad(): Promise<void> {
         continue;
       }
 
-      const result = await client.query(
-        `UPDATE barrios
-         SET id_localidad = $2
-         WHERE id_barrio = $1
-         RETURNING *;`,
-        [idBarrio, idLocalidad]
-      );
+      // Evita duplicados gracias al PRIMARY KEY (id_localidad, id_barrio)
+      const query = `
+        INSERT INTO localidades_barrios (id_localidad, id_barrio)
+        VALUES ($1, $2)
+        ON CONFLICT (id_localidad, id_barrio) DO NOTHING;
+      `;
 
-      // ✅ Usamos ?? 0 para asegurar que rowCount nunca sea null
-      if ((result.rowCount ?? 0) > 0) updateCount++;
+      const result = await client.query(query, [idLocalidad, idBarrio]);
+
+      if ((result.rowCount ?? 0) > 0) insertCount++;
       else skipCount++;
     }
 
     await client.query("COMMIT");
 
-    console.log("✅ Actualización completada con éxito:");
+    console.log("✅ Carga completada con éxito:");
     console.log(`   • Total filas procesadas: ${rows.length}`);
-    console.log(`   • Barrios actualizados: ${updateCount}`);
-    console.log(`   • Filas omitidas: ${skipCount}`);
+    console.log(`   • Relaciones insertadas: ${insertCount}`);
+    console.log(`   • Filas omitidas (duplicadas o inválidas): ${skipCount}`);
   } catch (error) {
     await client.query("ROLLBACK");
     if (error instanceof Error) {
-      console.error("❌ Error al actualizar barrios con localidades:", error.message);
+      console.error("❌ Error al insertar localidades_barrios:", error.message);
     } else {
       console.error("❌ Error desconocido:", error);
     }

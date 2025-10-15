@@ -48,7 +48,7 @@ async function loadTiposPersona(): Promise<void> {
       }
 
       const result = await client.query(
-        `INSERT INTO tipos_persona (id_tipo_persona, nombre_tipo_persona)
+        `INSERT INTO tipo_persona (id_tipo_persona, nombre_tipo_persona)
          VALUES ($1, $2)
          ON CONFLICT (id_tipo_persona) DO UPDATE
          SET nombre_tipo_persona = EXCLUDED.nombre_tipo_persona
