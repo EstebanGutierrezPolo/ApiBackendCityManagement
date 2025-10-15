@@ -259,14 +259,14 @@ BEGIN;
 
 -- 1️⃣ Renombrar columnas para ajustarlas a la nueva estructura
 ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
-ALTER TABLE public.barrios RENAME COLUMN nombre TO nombre_barrio;
+ALTER TABLE public.barrios RENAME COLUMN name TO nombre_barrio;
 ALTER TABLE public.barrios RENAME COLUMN area_has TO superficie_ha;
 ALTER TABLE public.barrios RENAME COLUMN geom TO geom_barrio;
 
 -- 2️⃣ Eliminar columnas innecesarias
 ALTER TABLE public.barrios 
     DROP COLUMN id,
-    DROP COLUMN name,
+    DROP COLUMN nombre,
     DROP COLUMN objectid_1;
 
 -- 3️⃣ Agregar las columnas nuevas

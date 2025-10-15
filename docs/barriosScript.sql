@@ -219,32 +219,4 @@ INSERT INTO "public"."barrios" ("id","name","objectid_1","nombre","area_has","ar
 COMMIT;
 ANALYZE "public"."barrios";
 
-BEGIN;
 
--- 1️⃣ Renombrar columnas para ajustarlas a la nueva estructura
-ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
-ALTER TABLE public.barrios RENAME COLUMN nombre TO nombre_barrio;
-ALTER TABLE public.barrios RENAME COLUMN area_has TO superficie_ha;
-ALTER TABLE public.barrios RENAME COLUMN geom TO geom_barrio;
-
--- 2️⃣ Eliminar columnas innecesarias
-ALTER TABLE public.barrios 
-    DROP COLUMN id,
-    DROP COLUMN name,
-    DROP COLUMN objectid_1;
-
--- 3️⃣ Agregar las columnas nuevas
-ALTER TABLE public.barrios
-    ADD COLUMN numero_habitantes INT NULL,
-    ADD COLUMN numero_predios INT NULL,
-    ADD COLUMN created_at TIMESTAMPTZ DEFAULT NOW(),
-    ADD COLUMN updated_at TIMESTAMPTZ DEFAULT NOW();
-
--- 4️⃣ Corregir la geometría (tu shapefile tiene 3D, así que forzamos a 2D para evitar errores)
-ALTER TABLE public.barrios 
-    ALTER COLUMN geom_barrio TYPE geometry(MULTIPOLYGON, 4326)
-    USING ST_Force2D(ST_SetSRID(geom_barrio, 4326));
-
--- 5️⃣ Asegurar clave primaria correcta
-ALTER TABLE public.barrios DROP CONSTRAINT IF EXISTS barrios_pkey;
-ALTER TABLE public.barrios ADD CONSTRAINT barrios_pkey PRIMARY KEY (id_barrio);
