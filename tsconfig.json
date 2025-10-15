@@ -10,5 +10,5 @@
     "skipLibCheck": true,
     "types": ["node"]
   },
-  "include": ["src/**/*", "src/seeders/config/testConnection.ts"]
+  "include": ["src/**/*", "src/seeders/config/testConnection.ts", "docs/11_load_localidades.ts"]
 }

@@ -240,14 +240,6 @@ CREATE TABLE programas (
 -- 4. Localidad Suroriente
 -- 5. Localidad Metropolitana
 -- 6. Todas
------ COMPLETADO CSV -----
--- CREATE TABLE localidades (
---     id_localidad SERIAL PRIMARY KEY,
---     nombre_localidad VARCHAR(100) NOT NULL UNIQUE,
---     geom_localidad GEOMETRY(MULTIPOLYGON, 4326),  -- Geometría con SRID 4326 (WGS84)
---     created_at TIMESTAMPTZ DEFAULT NOW(),
---     updated_at TIMESTAMPTZ DEFAULT NOW()
--- );
 -- Renombrar la tabla
 ALTER TABLE localidades_bq RENAME TO localidades;
 
@@ -287,7 +279,6 @@ ALTER TABLE localidades
 -- ==========================================
 --  12. TABLA: Barrios
 --  Contiene subdivisiones dentro de una localidad.
--- (Actualizar barrios)
 -- ==========================================
 --  Renombrar columnas para ajustarlas a la nueva estructura
 ALTER TABLE public.barrios RENAME COLUMN gid TO id_barrio;
@@ -315,12 +306,17 @@ ALTER TABLE public.barrios
 --  Asegurar clave primaria correcta
 ALTER TABLE public.barrios DROP CONSTRAINT IF EXISTS barrios_pkey;
 ALTER TABLE public.barrios ADD CONSTRAINT barrios_pkey PRIMARY KEY (id_barrio);
+
+
+---------------------------------------------------------------------------------------------
+-- TABLAS 11, 12, SON BARRIOS Y LOCALIDADES ESTAS SE INYECTAN DIRECTAMENTE CON SQL-----------
+---------------------------------------------------------------------------------------------
 -- ==========================================
 --  13. TABLA: Localidades_Barrios
 --  Relación explícita N:M entre Localidades y Barrios.
 --  (Aunque normalmente un barrio pertenece a una sola localidad, esto deja flexibilidad).
 -- ==========================================
------ PENDIENTE CSV -----
+----- COMPLETADO CSV -----
 CREATE TABLE localidades_barrios (
     id_localidad INT NOT NULL REFERENCES localidades(id_localidad)
         ON UPDATE CASCADE
@@ -376,7 +372,7 @@ CREATE TABLE proyecto_subestado (
 --  16. TABLA: Proyectos
 --  Contiene la información general del proyecto.
 -- ==========================================
------ PENDIENTE CSV -----
+----- COMPLETADO CSV -----
 
 CREATE TABLE proyectos (
     id_proyecto SERIAL PRIMARY KEY,
@@ -398,7 +394,7 @@ CREATE TABLE proyectos (
 );
 
 -- ==========================================
---  17. TABLA: Proyectos_Barrios
+--  17. TABLA: proyectos_barrios
 --  Relación N:M entre proyectos y barrios.
 --  Un proyecto puede impactar varios barrios.
 -- ==========================================

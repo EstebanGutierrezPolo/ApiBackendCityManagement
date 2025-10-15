@@ -2,7 +2,7 @@
 import fs from "fs";
 import path from "path";
 import csv from "csv-parser";
-import pool from "../config/db";
+import pool from "../src/config/db";
 
 interface LocalidadRow {
   id_localidad?: string;
