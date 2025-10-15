@@ -259,16 +259,16 @@ CREATE TABLE localidades (
 -- ==========================================
 -- TODOS LOS BARRIOS
 ----- COMPLETADO SCRIPT -----
-CREATE TABLE barrios (
-    id_barrio SERIAL PRIMARY KEY,
-    nombre_barrio VARCHAR(100) NOT NULL,
-    numero_habitantes INT NULL,
-    numero_predios INT NULL,
-    superficie_ha NUMERIC(12,2) NULL,                  -- Hectáreas
-    geom_barrio GEOMETRY(MULTIPOLYGON, 4326),     -- Polígono de la zona del barrio
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
-);
+-- CREATE TABLE barrios (
+--    id_barrio SERIAL PRIMARY KEY,
+--    nombre_barrio VARCHAR(100) NOT NULL,
+--    numero_habitantes INT NULL,
+--    numero_predios INT NULL,
+--    superficie_ha NUMERIC(12,2) NULL,                  -- Hectáreas
+--    geom_barrio GEOMETRY(MULTIPOLYGON, 4326),     -- Polígono de la zona del barrio
+--    created_at TIMESTAMPTZ DEFAULT NOW(),
+--    updated_at TIMESTAMPTZ DEFAULT NOW(),
+-- );
 
 -- ==========================================
 --  13. TABLA: Localidades_Barrios
