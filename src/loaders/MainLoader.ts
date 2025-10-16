@@ -22,6 +22,8 @@ import loadTiposAvance from "./24_tipo_avance";
 import loadTiposSeguimiento from "./26_tipo_segumiento";
 import loadModalidades from "./29_modalidades";
 import loadTiposContrato from "./30_tipo_contrato";
+import loadRepresentantesLegales from "./31_representante_legal";
+import loadAsociaciones from "./19_load_asociaciones";
 
 
 async function loadAll() {
@@ -42,11 +44,14 @@ async function loadAll() {
     await loadProyectosSubestado();
     await loadProyectos();
     await loadTiposAsociacion();
+    await loadRepresentantesLegales();
+    await loadAsociaciones();
     await loadTiposPersona();
     await loadTiposAvance();
     await loadTiposSeguimiento();
     await loadModalidades();
     await loadTiposContrato();
+    
 
     console.log("🎉 Todos los CSVs fueron cargados correctamente.");
   } catch (error) {
