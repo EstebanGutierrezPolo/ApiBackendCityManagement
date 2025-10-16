@@ -434,7 +434,7 @@ CREATE TABLE tipos_asociacion (
 
 CREATE TABLE asociaciones (
     id_asociacion SERIAL PRIMARY KEY,         -- Identificador único
-    nit VARCHAR(14) UNIQUE NOT NULL,          -- Número de identificación tributaria
+    nit VARCHAR(14) NULL,          -- MIENTRAS SE LLENA VA DEFAULT NULL-- Número de identificación tributaria
     nombre_asociacion TEXT NOT NULL,          -- Nombre de la asociación
     id_tipo_asociacion INT NOT NULL,          -- FK al tipo de asociación
     created_at TIMESTAMPTZ DEFAULT NOW(),
@@ -469,7 +469,7 @@ CREATE TABLE tipo_persona (
 CREATE TABLE personas (
     id_persona SERIAL PRIMARY KEY,                  -- Identificador único
     nombre_persona VARCHAR(100) NOT NULL,           -- Nombre de la persona
-    numero_identificacion VARCHAR(20) UNIQUE NOT NULL, -- Documento o NIT
+    numero_identificacion VARCHAR(20) UNIQUE NULL, -- Documento o NIT
     id_tipo_persona INT NOT NULL,                   -- FK al tipo de persona
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
