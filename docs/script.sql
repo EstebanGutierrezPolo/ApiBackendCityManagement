@@ -55,17 +55,18 @@ CREATE TABLE estados_usuario (
 CREATE TABLE tipos_documento (
     id_tipo_documento SERIAL PRIMARY KEY, -- Identificador único del tipo de documento (PK).
     tipo_documento VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de documento.
+    UNIQUE (tipo_documento)
 );
 
 -- 5. Tabla: usuarios - Almacena la información de las cuentas de usuario que acceden al sistema.
------ PENDIENTE CSV -----
+----- COMPLETADO CSV -----
 
 CREATE TABLE usuarios (
     id_usuario SERIAL PRIMARY KEY, -- Identificador único del usuario (PK).
     id_rol INT NOT NULL REFERENCES roles(id_rol) ON UPDATE CASCADE ON DELETE RESTRICT, -- FK a roles. Define el nivel de acceso.
     id_cargo INT REFERENCES cargos(id_cargo) ON UPDATE CASCADE ON DELETE SET NULL, -- FK a cargos. Cargo actual del usuario.
     id_estado_usuario INT REFERENCES estados_usuario(id_estado_usuario) ON UPDATE CASCADE ON DELETE SET NULL, -- FK a estados_usuario. Estado de la cuenta.
-    id_tipo_documento INT REFERENCES tipos_documento(id_tipo_documento) ON UPDATE CASCADE ON DELETE RESTRICT, -- FK a tipos_documento.
+    id_tipo_documento INT REFERENCES tipos_documento(id_tipo_documento) ON UPDATE CASCADE ON DELETE, -- FK a tipos_documento.
 
     primer_nombre VARCHAR(50) NOT NULL,
     segundo_nombre VARCHAR(50), -- Segundo nombre (opcional).
@@ -79,7 +80,7 @@ CREATE TABLE usuarios (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
 
-    UNIQUE (id_tipo_documento, documento) -- Restricción: No puede haber el mismo número de documento con el mismo tipo.
+    UNIQUE (documento) -- Restricción: No puede haber el mismo número de documento con el mismo tipo.
 );
 
 -----------------------------------------------------------------------------------------------------------

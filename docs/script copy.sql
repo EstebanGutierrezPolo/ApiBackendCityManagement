@@ -322,7 +322,7 @@ CREATE TABLE usuarios (
     created_at TIMESTAMPTZ DEFAULT NOW(),
     updated_at TIMESTAMPTZ DEFAULT NOW(),
 
-    UNIQUE (id_tipo_documento, documento) -- Restricción: No puede haber el mismo número de documento con el mismo tipo.
+    UNIQUE (documento) -- Restricción: No puede haber el mismo número de documento con el mismo tipo.
 );
 
 -----------------------------------------------------------------------------------------------------------

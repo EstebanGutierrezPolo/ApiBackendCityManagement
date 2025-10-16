@@ -6,6 +6,7 @@ import loadRoles from "./1_load_roles";
 import loadCargos from "./2_load_cargos";
 import loadEstadosUsuario from "./3_load_estados_usuarios";
 import loadTiposDocumento from "./4_load_tipos_documentos";
+import loadUsuarios from "./5_load_roles";
 import loadSectores from "./6_load_sectores";
 import loadDependencias from "./7_load_dependencias";
 import loadLineasEstrategicas from "./8_load_linea_estrategica";
@@ -30,6 +31,7 @@ async function loadAll() {
     await loadCargos();
     await loadEstadosUsuario();
     await loadTiposDocumento();
+    await loadUsuarios();
     await loadSectores();
     await loadDependencias();
     await loadLineasEstrategicas();

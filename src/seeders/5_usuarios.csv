@@ -1,2 +1,4 @@
-
+id_rol,id_cargo,id_estado_usuario,id_tipo_documento,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,documento,email,password_hashed,activo
+1,3,1,1,Esteban,Eduardo,Gutierrez,Polo,1044617115,estebangutierrezpolo@gmail.com,$2b$10$EjemploHash1234567890ABCDEFGHIJKLMNO,true
+1,3,1,1,Isai,David,Ariza,Cantillo,1001943984,isaistudio1.1@hotmail.com,$2b$10$EjemploHash1234567890ABCDEFGHIJKLMNO,true
 
