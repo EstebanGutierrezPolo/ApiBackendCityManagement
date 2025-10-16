@@ -1,334 +1,59 @@
-﻿;id_representante_legal;nombre_representante_legal;id_tipo_documento;documento
-;1;Alvaro Henriquez Medrano;null;null
-;2;Maria Isabel Valenzuela Benitez;null;null
-;3;Guillermo Alberto Cuello Gieseken;null;null
-;4;Eduardo Enrique Caballero Avila;null;null
-;5;Ivan Alberto Jimenez Aguirre;null;null
-;6;Roberto Carlo Donado Arce;null;null
-;7;Eduardo Santos Martinez;null;null
-;8;Fabiam Alvarado Paternina;null;null
-;9;Carlos Joaquin Puche Lizarazo;null;null
-;10;Carlos Joaquin Puche Lizarazo;null;null
-;11;Ismael Enrique Gomez Prada;null;null
-;12;Carlos Alberto Rozo Nader;null;null
-;13;EMIRO CARLOS BARGUIL CUBILLOS;null;null
-;14;CARLOS KARLO COTES MADERA;null;null
-;15;CARLOS JOSÉ MARTÍNEZ HERNÁNDEZ;null;null
-;16;IVAN ENRIQUE STEVENSON DEL VECCHIO;null;null
-;17;CARMELO FAILLACE SAID;null;null
-;18;SANTIAGO ANDRES DOMINGUEZ CAÑA;null;null
-;19;ALVARO HERNANDO CALDERON TORO;null;null
-;20;ROBERTO CARLO DONADO ARCE;null;null
-;21;null;null;null
-;22;LUIS FRANCISCO OVALLE LLINAS;null;null
-;23;CARLOS FRANCISCO DIAZGRANADOS;null;null
-;24;JOSE JULIAN SAADE CURE;null;null
-;25;NUNO TELMO CIPRIANO VIANA ABRANCHES;null;null
-;26;CARLOS FRANCISCO DIAZGRANADOS;null;null
-;27;Cristian David Jimenez Yejas;null;null
-;28;Nuno Telmo Cipriano Viana Abranches;null;null
-;29;null;null;null
-;30;Jairo Contreras Rincon;null;null
-;31;Jairo Contreras Rincon;null;null
-;32;Eduardo Santos;null;null
-;33;Eduardo Santos;null;null
-;34;Eduardo Santos;null;null
-;35;null;null;null
-;36;null;null;null
-;37;null;null;null
-;38;null;null;null
-;39;null;null;null
-;40;null;null;null
-;41;null;null;null
-;42;null;null;null
-;43;null;null;null
-;44;null;null;null
-;45;null;null;null
-;46;null;null;null
-;47;null;null;null
-;48;Jairo Contreras Rincon;null;null
-;49;Adalberto Vivero Coronel;null;null
-;50;Jose Maria Vecino Villarreal;null;null
-;51;Andres Felipe Sorzano;null;null
-;52;Rafi Farh Carbonell;null;null
-;53;Rafi Farh Carbonell;null;null
-;54;"Antonio Escorcia
-;";null;null
-;55;"Antonio Escorcia
-;";null;null
-;56;"Antonio Escorcia
-;";null;null
-;57;"Antonio Escorcia
-;";null;null
-;58;"Antonio Escorcia
-;";null;null
-;59;"Reynaldo Yali Diaz
-;";null;null
-;60;"Antonio Escorcia
-;";null;null
-;61;"Antonio Escorcia
-;";null;null
-;62;Guillermo Cuello Gieseken;null;null
-;63;Guillermo Cuello Gieseken;null;null
-;64;Guillermo Cuello Gieseken;null;null
-;65;Guillermo Cuello Gieseken;null;null
-;66;Guillermo Cuello Gieseken;null;null
-;67;Guillermo Cuello Gieseken;null;null
-;68;Guillermo Cuello Gieseken;null;null
-;69;Fabiam Alvarado Paternina;null;null
-;70;"Roberto Carlo Donado Arce
-;";null;null
-;71;Cristian David Jimenez Yejas;null;null
-;72;Cristian David Jimenez Yejas;null;null
-;73;Cristian David Jimenez Yejas;null;null
-;74;Cristian David Jimenez Yejas;null;null
-;75;Cristian David Jimenez Yejas;null;null
-;76;Cristian David Jimenez Yejas;null;null
-;77;Cristian David Jimenez Yejas;null;null
-;78;Cristian David Jimenez Yejas;null;null
-;79;Cristian David Jimenez Yejas;null;null
-;80;Cristian David Jimenez Yejas;null;null
-;81;Cristian David Jimenez Yejas;null;null
-;82;Cristian David Jimenez Yejas;null;null
-;83;Cristian David Jimenez Yejas;null;null
-;84;Cristian David Jimenez Yejas;null;null
-;85;Cristian David Jimenez Yejas;null;null
-;86;Cristian David Jimenez Yejas;null;null
-;87;Cristian David Jimenez Yejas;null;null
-;88;Cristian David Jimenez Yejas;null;null
-;89;Cristian David Jimenez Yejas;null;null
-;90;Cristian David Jimenez Yejas;null;null
-;91;Cristian David Jimenez Yejas;null;null
-;92;Cristian David Jimenez Yejas;null;null
-;93;Cristian David Jimenez Yejas;null;null
-;94;Francisco Dominguez Cuellar;null;null
-;95;Francisco Dominguez Cuellar;null;null
-;96;Ingrid Nathali Torres Cortés;null;null
-;97; OLEARIS ALONSO HERNÁNDEZ ORELLANO ;null;null
-;98; CRISTIAN DAVID JIMÉNEZ YEJAS ;null;null
-;99; ALVARO HENRIQUEZ MEDRANO ;null;null
-;100; JOSE JULIAN SAADE CURE ;null;null
-;101; MARIA ISABEL VALENZUELA BENITEZ ;null;null
-;102; GUILLERMO ALBERTO CUELLO GIESEKE ;null;null
-;103; LUIS CARLOS PEREZ MENDEZ ;null;null
-;104; ANDRES FELIPE ROMERO SANJUAN ;null;null
-;105;JOSE MARIA VECINO VILLAREAL;null;null
-;106;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;107;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;108;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;109;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;110;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;111;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;112;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;113;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;114;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;115;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;116;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;117;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;118;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;119;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;120;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;121;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;122;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;123;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;124;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;125;JESUS ARMANDO CERVANTES CEBALLOS;null;null
-;126;SAUL RINCON VILLAMIZAR;null;null
-;127;SAUL RINCON VILLAMIZAR;null;null
-;128;SAUL RINCON VILLAMIZAR;null;null
-;129;SAUL RINCON VILLAMIZAR;null;null
-;130;SAUL RINCON VILLAMIZAR;null;null
-;131;SAUL RINCON VILLAMIZAR;null;null
-;132;SAUL RINCON VILLAMIZAR;null;null
-;133;SAUL RINCON VILLAMIZAR;null;null
-;134;SAUL RINCON VILLAMIZAR;null;null
-;135;SAUL RINCON VILLAMIZAR;null;null
-;136;null;null;null
-;137;null;null;null
-;138;Rodrigo Velez Gomez;null;null
-;139;María Isabel Valenzuela Benítez;null;null
-;140;Rodrigo Velez Gomez;null;null
-;141;Luis Eduardo Barrios Lopez ;null;null
-;142;Pedro Jorge Da Costa Ferreira Teixeira;null;null
-;143;Luis Eduardo Bencardino Calderon;null;null
-;144;Ivan Jimenez Aguirre;null;null
-;145;Ivan Jimenez Aguirre;null;null
-;146;Ivan Jimenez Aguirre;null;null
-;147;Ivan Jimenez Aguirre;null;null
-;148;Ivan Jimenez Aguirre;null;null
-;149;Ivan Jimenez Aguirre;null;null
-;150;null;null;null
-;151;null;null;null
-;152;null;null;null
-;153;LILIANA RAMIREZ SIERRA;null;null
-;154;ROBERTO CARLO DONADO ARCE;null;null
-;155;ANDRES HERNAN QUINCHAENGUA PINEDA;null;null
-;156;ANDRES HERNAN QUINCHAENGUA PINEDA;null;null
-;157;ANDRES HERNAN QUINCHAENGUA PINEDA;null;null
-;158;ANDRES HERNAN QUINCHAENGUA PINEDA;null;null
-;159;JAVIER ANDRES TORRES MORE;null;null
-;160;JAVIER ANDRES TORRES MORE;null;null
-;161;JAVIER ANDRES TORRES MORE;null;null
-;162;JAVIER ANDRES TORRES MORE;null;null
-;163;JAVIER ANDRES TORRES MORE;null;null
-;164;ANA LUCILA GOMEZ ARTEAGA;null;null
-;165;ANA LUCILA GOMEZ ARTEAGA;null;null
-;166;ANA LUCILA GOMEZ ARTEAGA;null;null
-;167;ANA LUCILA GOMEZ ARTEAGA;null;null
-;168;ANA LUCILA GOMEZ ARTEAGA;null;null
-;169;ANA LUCILA GOMEZ ARTEAGA;null;null
-;170;ANA LUCILA GOMEZ ARTEAGA;null;null
-;171;ENETH TALINA AVENDAÑO PACHECO;null;null
-;172;ENETH TALINA AVENDAÑO PACHECO;null;null
-;173;ENETH TALINA AVENDAÑO PACHECO;null;null
-;174;ENETH TALINA AVENDAÑO PACHECO;null;null
-;175;ENETH TALINA AVENDAÑO PACHECO;null;null
-;176;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;177;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;178;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;179;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;180;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;181;null;null;null
-;182;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;183;MARIA ISABEL VALENZUELA BENITEZ;null;null
-;184;null;null;null
-;185;null;null;null
-;186;null;null;null
-;187;null;null;null
-;188;null;null;null
-;189;null;null;null
-;190;null;null;null
-;191;null;null;null
-;192;null;null;null
-;193;null;null;null
-;194;null;null;null
-;195;null;null;null
-;196;null;null;null
-;197;null;null;null
-;198;null;null;null
-;199;null;null;null
-;200;null;null;null
-;201;null;null;null
-;202;null;null;null
-;203;null;null;null
-;204;null;null;null
-;205;null;null;null
-;206;null;null;null
-;207;null;null;null
-;208;null;null;null
-;209;null;null;null
-;210;null;null;null
-;211;null;null;null
-;212;null;null;null
-;213;null;null;null
-;214;null;null;null
-;215;null;null;null
-;216;null;null;null
-;217;null;null;null
-;218;null;null;null
-;219;null;null;null
-;220;null;null;null
-;221;null;null;null
-;222;null;null;null
-;223;null;null;null
-;224;null;null;null
-;225;null;null;null
-;226;null;null;null
-;227;null;null;null
-;228;null;null;null
-;229;null;null;null
-;230;null;null;null
-;231;Ivan Alberto Jimenez Aguirre;null;null
-;232;Ivan Alberto Jimenez Aguirre;null;null
-;233;Ivan Alberto Jimenez Aguirre;null;null
-;234;Ivan Alberto Jimenez Aguirre;null;null
-;235;null;null;null
-;236;null;null;null
-;237;null;null;null
-;238;null;null;null
-;239;null;null;null
-;240;null;null;null
-;241;null;null;null
-;242;null;null;null
-;243;null;null;null
-;244;null;null;null
-;245;Carlos Fernando Lemus Santana;null;null
-;246;null;null;null
-;247;Sandy Molina Villanueva;null;null
-;248;CARLOS FERNANDO LEMUS SANTANA  ;null;null
-;249;null;null;null
-;250;null;null;null
-;251;null;null;null
-;252;null;null;null
-;253;null;null;null
-;254;null;null;null
-;255;null;null;null
-;256;null;null;null
-;257;null;null;null
-;258;null;null;null
-;259;null;null;null
-;260;null;null;null
-;261;null;null;null
-;262;null;null;null
-;263;null;null;null
-;264;null;null;null
-;265;null;null;null
-;266;null;null;null
-;267;null;null;null
-;268;null;null;null
-;269;null;null;null
-;270;null;null;null
-;271;null;null;null
-;272;null;null;null
-;273;null;null;null
-;274;null;null;null
-;275;null;null;null
-;276;null;null;null
-;277;null;null;null
-;278;null;null;null
-;279;null;null;null
-;280;null;null;null
-;281;null;null;null
-;282;null;null;null
-;283;null;null;null
-;284;null;null;null
-;285;null;null;null
-;286;null;null;null
-;287;null;null;null
-;288;null;null;null
-;289;null;null;null
-;290;null;null;null
-;291;null;null;null
-;292;null;null;null
-;293;null;null;null
-;294;null;null;null
-;295;null;null;null
-;296;null;null;null
-;297;null;null;null
-;298;null;null;null
-;299;null;null;null
-;300;null;null;null
-;301;null;null;null
-;302;null;null;null
-;303;null;null;null
-;304;null;null;null
-;305;null;null;null
-;306;null;null;null
-;307;null;null;null
-;308;null;null;null
-;309;null;null;null
-;310;null;null;null
-;311;null;null;null
-;312;null;null;null
-;313;null;null;null
-;314;null;null;null
-;315;null;null;null
-;316;null;null;null
-;317;null;null;null
-;318;null;null;null
-;319;STEPHANY MARTELO;null;null
-;320;ALEXANDER DE BEDOUT;null;null
-;321;Fernando Prada Monsalve;null;null
-;322;Luis Fernando Leguizamo;null;null
-;323;ALEXANDER DE BEDOUT;null;null
-;324;null;null;null
+Unnamed: 0;id_representante_legal;nombre_representante_legal;id_tipo_documento;numero_identificacion
+;1;Alvaro Henriquez Medrano;1;null
+;2;Maria Isabel Valenzuela Benitez;1;null
+;3;Guillermo Alberto Cuello Gieseken;1;null
+;4;Eduardo Enrique Caballero Avila;1;null
+;5;Ivan Alberto Jimenez Aguirre;1;null
+;6;Roberto Carlo Donado Arce;1;null
+;7;Eduardo Santos Martinez;1;null
+;8;Fabiam Alvarado Paternina;1;null
+;9;Carlos Joaquin Puche Lizarazo;1;null
+;10;Ismael Enrique Gomez Prada;1;null
+;11;Carlos Alberto Rozo Nader;1;null
+;12;EMIRO CARLOS BARGUIL CUBILLOS;1;null
+;13;CARLOS KARLO COTES MADERA;1;null
+;14;CARLOS JOSÉ MARTÍNEZ HERNÁNDEZ;1;null
+;15;IVAN ENRIQUE STEVENSON DEL VECCHIO;1;null
+;16;CARMELO FAILLACE SAID;1;null
+;17;SANTIAGO ANDRES DOMINGUEZ CAÑA;1;null
+;18;ALVARO HERNANDO CALDERON TORO;1;null
+;19;LUIS FRANCISCO OVALLE LLINAS;1;null
+;20;CARLOS FRANCISCO DIAZGRANADOS;1;null
+;21;JOSE JULIAN SAADE CURE;1;null
+;22;NUNO TELMO CIPRIANO VIANA ABRANCHES;1;null
+;23;Cristian David Jimenez Yejas;1;null
+;24;Jairo Contreras Rincon;1;null
+;25;Eduardo Santos;1;null
+;26;Adalberto Vivero Coronel;1;null
+;27;Jose Maria Vecino Villarreal;1;null
+;28;Andres Felipe Sorzano;1;null
+;29;Rafi Farh Carbonell;1;null
+;30;"Antonio Escorcia;";1;null
+;31;"Reynaldo Yali Diaz;";1;null
+;32;Guillermo Cuello Gieseken;1;null
+;33;"Roberto Carlo Donado Arce;";1;null
+;34;Francisco Dominguez Cuellar;1;null
+;35;Ingrid Nathali Torres Cortés;1;null
+;36; OLEARIS ALONSO HERNÁNDEZ ORELLANO ;1;null
+;37; GUILLERMO ALBERTO CUELLO GIESEKE ;1;null
+;38; LUIS CARLOS PEREZ MENDEZ ;1;null
+;39; ANDRES FELIPE ROMERO SANJUAN ;1;null
+;40;JOSE MARIA VECINO VILLAREAL;1;null
+;41;JESUS ARMANDO CERVANTES CEBALLOS;1;null
+;42;SAUL RINCON VILLAMIZAR;1;null
+;43;Rodrigo Velez Gomez;1;null
+;44;Luis Eduardo Barrios Lopez ;1;null
+;45;Pedro Jorge Da Costa Ferreira Teixeira;1;null
+;46;Luis Eduardo Bencardino Calderon;1;null
+;47;Ivan Jimenez Aguirre;1;null
+;48;LILIANA RAMIREZ SIERRA;1;null
+;49;ANDRES HERNAN QUINCHAENGUA PINEDA;1;null
+;50;JAVIER ANDRES TORRES MORE;1;null
+;51;ANA LUCILA GOMEZ ARTEAGA;1;null
+;52;ENETH TALINA AVENDAÑO PACHECO;1;null
+;53;Carlos Fernando Lemus Santana;1;null
+;54;Sandy Molina Villanueva;1;null
+;55;STEPHANY MARTELO;1;null
+;56;ALEXANDER DE BEDOUT;1;null
+;57;Fernando Prada Monsalve;1;null
+;58;Luis Fernando Leguizamo;1;null
