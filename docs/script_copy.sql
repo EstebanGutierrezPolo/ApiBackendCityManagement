@@ -875,3 +875,4 @@ CREATE TABLE tipos_contrato (
     id_tipo_contrato SERIAL PRIMARY KEY,              -- Identificador único del tipo de contrato (PK)
     nombre_tipo_contrato VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de contrato (ej. "Fijo", "Temporal", etc.)
 );
+

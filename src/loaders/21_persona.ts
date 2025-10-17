@@ -3,11 +3,13 @@ import path from "path";
 import csv from "csv-parser";
 import pool from "../config/db";
 
-interface RepresentanteLegalRow {
-  id_representante_legal?: string;
-  nombre_representante_legal?: string;
-  id_tipo_documento?: string;
+interface PersonaRow {
+  id_persona?: string;
+  nombre_miembro?: string;
   numero_identificacion?: string;
+  id_tipo_documento?: string;
+  id_tipo_persona?: string;
+  id_representante_legal?: string;
 }
 
 /** Limpia valores "null" o vacíos */
@@ -26,15 +28,15 @@ const parseNumber = (val?: string): number | null => {
   return isNaN(num) ? null : num;
 };
 
-async function loadRepresentantesLegales(): Promise<void> {
-  const filePath = path.join(__dirname, "../seeders/31_representante_legal.csv");
-  const rows: RepresentanteLegalRow[] = [];
+async function loadPersonas(): Promise<void> {
+  const filePath = path.join(__dirname, "../seeders/21_personas.csv");
+  const rows: PersonaRow[] = [];
 
   // 📥 Leer CSV (usa punto y coma como delimitador)
   await new Promise<void>((resolve, reject) => {
     fs.createReadStream(filePath)
       .pipe(csv({ separator: ";" }))
-      .on("data", (data: RepresentanteLegalRow) => rows.push(data))
+      .on("data", (data: PersonaRow) => rows.push(data))
       .on("end", () => resolve())
       .on("error", (err) => reject(err));
   });
@@ -52,40 +54,40 @@ async function loadRepresentantesLegales(): Promise<void> {
   let skipCount = 0;
 
   try {
-    console.log("🌱 Iniciando carga de representantes legales...");
+    console.log("🌱 Iniciando carga de personas...");
     await client.query("BEGIN");
 
-    for (const r of rows) {
-      const id = parseNumber(r.id_representante_legal);
-      const nombre = sanitize(r.nombre_representante_legal);
-      const idTipoDocumento = parseNumber(r.id_tipo_documento);
-      const numeroIdentificacion = sanitize(r.numero_identificacion);
+    for (const p of rows) {
+      const id = parseNumber(p.id_persona);
+      const nombre = sanitize(p.nombre_miembro);
+      const numeroIdentificacion = sanitize(p.numero_identificacion);
+      const idTipoPersona = parseNumber(p.id_tipo_persona);
 
       try {
         const result = await client.query(
           `
-          INSERT INTO representante_legal (
-            id_representante_legal,
-            nombre_representante_legal,
-            id_tipo_documento,
-            numero_identificacion
+          INSERT INTO personas (
+            id_persona,
+            nombre_persona,
+            numero_identificacion,
+            id_tipo_persona
           ) VALUES ($1, $2, $3, $4)
-          ON CONFLICT (id_representante_legal) DO UPDATE 
+          ON CONFLICT (id_persona) DO UPDATE 
           SET 
-            nombre_representante_legal = EXCLUDED.nombre_representante_legal,
-            id_tipo_documento = EXCLUDED.id_tipo_documento,
+            nombre_persona = EXCLUDED.nombre_persona,
             numero_identificacion = EXCLUDED.numero_identificacion,
+            id_tipo_persona = EXCLUDED.id_tipo_persona,
             updated_at = NOW()
           RETURNING xmax = 0 AS inserted;
           `,
-          [id, nombre, idTipoDocumento, numeroIdentificacion]
+          [id, nombre, numeroIdentificacion, idTipoPersona]
         );
 
         const wasInserted = result.rows[0]?.inserted;
         if (wasInserted) insertCount++;
         else updateCount++;
       } catch (err: any) {
-        console.error(`❌ Error en fila con id_representante_legal=${r.id_representante_legal}: ${err.message}`);
+        console.error(`❌ Error en fila con id_persona=${p.id_persona}: ${err.message}`);
         skipCount++;
       }
     }
@@ -100,7 +102,7 @@ async function loadRepresentantesLegales(): Promise<void> {
   } catch (error) {
     await client.query("ROLLBACK");
     if (error instanceof Error) {
-      console.error("❌ Error general al cargar representantes legales:", error.message);
+      console.error("❌ Error general al cargar personas:", error.message);
     } else {
       console.error("❌ Error desconocido:", error);
     }
@@ -111,7 +113,7 @@ async function loadRepresentantesLegales(): Promise<void> {
 
 // 🚀 Ejecutar directamente
 if (require.main === module) {
-  loadRepresentantesLegales()
+  loadPersonas()
     .then(async () => {
       await pool.end();
     })
@@ -121,4 +123,4 @@ if (require.main === module) {
     });
 }
 
-export default loadRepresentantesLegales;
+export default loadPersonas;
