@@ -551,6 +551,66 @@ CREATE TABLE contratista (
         ON DELETE SET NULL
 );
 
+-- ============================================
+-- 24. TABLA: contratos_contratistas
+-- ============================================
+
+CREATE TABLE contratos_contratistas (
+    id_contrato INT NOT NULL,
+    id_contratista INT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (id_contrato, id_contratista),
+    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_contratista) REFERENCES contratistas(id_contratista) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+-- ============================================
+-- 32. TABLA: contratos   
+-- ============================================
+
+CREATE TABLE contratos (
+    id_contrato SERIAL PRIMARY KEY,                           -- Identificador único del contrato
+    numero_contrato VARCHAR(255) UNIQUE NOT NULL,              -- Número de contrato (único)
+    id_tipo_contrato INT NOT NULL,                             -- FK a tipo de contrato
+    id_modalidad INT NOT NULL,                                 -- FK a modalidad del contrato
+    fecha_inicio DATE NULL,                                    -- Fecha de inicio
+    fecha_adjudicacion DATE NULL,                              -- Fecha de adjudicación
+    fecha_firma_contrato DATE NULL,                            -- Fecha de firma del contrato
+    fecha_terminacion_inicial DATE NULL,                       -- Fecha de terminación inicial
+    fecha_terminacion_final DATE NULL,                         -- Fecha de terminación final
+    ampliacion_contractual BOOLEAN DEFAULT FALSE,              -- Indica si hubo ampliación
+    valor_inicial DECIMAL(15, 2) NULL,                         -- Valor inicial del contrato
+    valor_adicionado DECIMAL(15, 2) NULL,                      -- Valor adicionado
+    valor_facturado DECIMAL(15, 2) NULL,                       -- Valor facturado
+    valor_total_pagado DECIMAL(15, 2) NULL,                    -- Valor total pagado
+    created_at TIMESTAMPTZ DEFAULT NOW(),                      -- Fecha de creación
+    updated_at TIMESTAMPTZ DEFAULT NOW(),                      -- Fecha de última actualización
+
+    CONSTRAINT fk_contrato_tipo FOREIGN KEY (id_tipo_contrato)
+        REFERENCES tipos_contrato(id_tipo_contrato)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT,
+
+    CONSTRAINT fk_contrato_modalidad FOREIGN KEY (id_modalidad)
+        REFERENCES modalidades(id_modalidad)
+        ON UPDATE CASCADE
+        ON DELETE RESTRICT
+);
+
+-- ============================================
+-- 33. TABLA: contratos_proyectos
+-- ============================================
+
+CREATE TABLE contratos_proyectos (
+    id_proyecto INT NOT NULL,
+    id_contrato INT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (id_proyecto, id_contrato),
+    FOREIGN KEY (id_proyecto) REFERENCES proyectos(id_proyecto) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato) ON UPDATE CASCADE ON DELETE CASCADE
+);
 
 -- ============================================
 -- TABLAS DE AVANCES Y SEGUIMIENTOS
@@ -565,8 +625,10 @@ CREATE TABLE tipos_avance (
     id_tipo_avance SERIAL PRIMARY KEY,
     nombre_tipo_avance VARCHAR(100) NOT NULL UNIQUE
 );
-
+-------------------------
 -- 25. Avances
+-------------------------
+
 ----- PENDIENTE CSV -----
 
 CREATE TABLE avances (
@@ -580,7 +642,10 @@ CREATE TABLE avances (
     updated_at TIMESTAMPTZ DEFAULT NOW()
 );
 
+--------------------------
 -- 26.Tipos de seguimiento
+-------------------------
+
 -- 1. Actividad
 -- 2. Ruta critica
 ----- COMPLETADO CSV -----
@@ -590,7 +655,10 @@ CREATE TABLE tipos_seguimiento (
     nombre_tipo_seguimiento VARCHAR(100) NOT NULL UNIQUE
 );
 
+-----------------------------
 -- 27. Estados de seguimiento
+-----------------------------
+
 ----- PENDIENTE CSV -----
 ----- PREGUNTAR A LUCHO -----
 CREATE TABLE estados_seguimientos (
@@ -598,7 +666,9 @@ CREATE TABLE estados_seguimientos (
     nombre_estado_seguimiento VARCHAR(100) NOT NULL UNIQUE
 );
 
--- 28. Seguimientos
+-------------------------
+-- 28. Seguimientos -----
+-------------------------
 ----- PENDIENTE CSV -----
 
 CREATE TABLE seguimientos (
@@ -631,4 +701,10 @@ CREATE TABLE tipos_contrato (
     id_tipo_contrato SERIAL PRIMARY KEY,              -- Identificador único del tipo de contrato (PK)
     nombre_tipo_contrato VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de contrato (ej. "Fijo", "Temporal", etc.)
 );
+
+
+
+
+
+
 
