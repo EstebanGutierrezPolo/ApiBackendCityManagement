@@ -550,21 +550,24 @@ CREATE TABLE contratista (
         ON UPDATE CASCADE
         ON DELETE SET NULL
 );
-
 -- ============================================
--- 24. TABLA: contratos_contratistas
+-- 29. TABLA: modalidades
+-- Clasifica las modalidades del contrato o proyecto.
 -- ============================================
-
-CREATE TABLE contratos_contratistas (
-    id_contrato INT NOT NULL,
-    id_contratista INT NOT NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW(),
-    PRIMARY KEY (id_contrato, id_contratista),
-    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato) ON UPDATE CASCADE ON DELETE CASCADE,
-    FOREIGN KEY (id_contratista) REFERENCES contratistas(id_contratista) ON UPDATE CASCADE ON DELETE CASCADE
+CREATE TABLE modalidades (
+    id_modalidad SERIAL PRIMARY KEY,            -- Identificador único de la modalidad (PK)
+    nombre_modalidad TEXT UNIQUE NOT NULL       -- Nombre descriptivo de la modalidad (ej. "Presencial", "Virtual", etc.)
 );
 
+-- ============================================
+-- 30. TABLA: tipos_contrato
+-- Clasifica los diferentes tipos de contrato.
+-- ============================================
+----- COMPLETADO CSV -----
+CREATE TABLE tipos_contrato (
+    id_tipo_contrato SERIAL PRIMARY KEY,              -- Identificador único del tipo de contrato (PK)
+    nombre_tipo_contrato VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de contrato (ej. "Fijo", "Temporal", etc.)
+);
 -- ============================================
 -- 32. TABLA: contratos   
 -- ============================================
@@ -596,6 +599,20 @@ CREATE TABLE contratos (
         REFERENCES modalidades(id_modalidad)
         ON UPDATE CASCADE
         ON DELETE RESTRICT
+);
+
+-- ============================================
+-- 24. TABLA: contratos_contratistas
+-- ============================================
+
+CREATE TABLE contratos_contratistas (
+    id_contrato INT NOT NULL,
+    id_contratista INT NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    PRIMARY KEY (id_contrato, id_contratista),
+    FOREIGN KEY (id_contrato) REFERENCES contratos(id_contrato) ON UPDATE CASCADE ON DELETE CASCADE,
+    FOREIGN KEY (id_contratista) REFERENCES contratista(id_contratista) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 -- ============================================
@@ -682,29 +699,3 @@ CREATE TABLE seguimientos (
     created_at TIMESTAMPTZ DEFAULT NOW(),
 	updated_at TIMESTAMPTZ DEFAULT NOW()
 );
-
--- ============================================
--- 29. TABLA: modalidades
--- Clasifica las modalidades del contrato o proyecto.
--- ============================================
-CREATE TABLE modalidades (
-    id_modalidad SERIAL PRIMARY KEY,            -- Identificador único de la modalidad (PK)
-    nombre_modalidad TEXT UNIQUE NOT NULL       -- Nombre descriptivo de la modalidad (ej. "Presencial", "Virtual", etc.)
-);
-
--- ============================================
--- 30. TABLA: tipos_contrato
--- Clasifica los diferentes tipos de contrato.
--- ============================================
------ COMPLETADO CSV -----
-CREATE TABLE tipos_contrato (
-    id_tipo_contrato SERIAL PRIMARY KEY,              -- Identificador único del tipo de contrato (PK)
-    nombre_tipo_contrato VARCHAR(100) UNIQUE NOT NULL -- Nombre del tipo de contrato (ej. "Fijo", "Temporal", etc.)
-);
-
-
-
-
-
-
-
