@@ -375,22 +375,41 @@ CREATE TABLE proyecto_subestado (
 ----- COMPLETADO CSV -----
 
 CREATE TABLE proyectos (
-    id_proyecto SERIAL PRIMARY KEY,
-    nombre_proyecto TEXT NULL,
-    direccion TEXT NULL,
-    id_programa INT NOT NULL REFERENCES programas(id_programa)
+    id_proyecto SERIAL PRIMARY KEY,                              -- Identificador único del proyecto
+    
+    nombre_proyecto TEXT NULL,                                   -- Nombre del proyecto
+    direccion TEXT NULL,                                         -- Dirección o ubicación
+    
+    id_programa INT NOT NULL REFERENCES programas(id_programa)   -- Relación con tabla programas
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    id_proyecto_estado INT NULL REFERENCES proyecto_estado(id_proyecto_estado)
+        
+    id_proyecto_estado INT NULL REFERENCES proyecto_estado(id_proyecto_estado)  -- Estado general
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    id_proyecto_subestado INT NULL REFERENCES proyecto_subestado(id_proyecto_subestado)
+        
+    id_proyecto_subestado INT NULL REFERENCES proyecto_subestado(id_proyecto_subestado)  -- Subestado
         ON UPDATE CASCADE
         ON DELETE SET NULL,
-    coordenada_x VARCHAR(255) NULL,
-    coordenada_y VARCHAR(255) NULL,
-    created_at TIMESTAMPTZ DEFAULT NOW(),
-    updated_at TIMESTAMPTZ DEFAULT NOW()
+        
+    coordenada_x VARCHAR(255) NULL,                              -- Coordenada geográfica X (longitud)
+    coordenada_y VARCHAR(255) NULL,                              -- Coordenada geográfica Y (latitud),
+    
+    valor_inicial_obra DECIMAL(18,2) NULL,                       -- Valor inicial de la obra
+    valor_total_adicionado_obra DECIMAL(18,2) NULL,              -- Valor total adicionado a la obra
+    valor_total_facturado_obra DECIMAL(18,2) NULL,               -- Valor total facturado de la obra
+    valor_total_pagado_obra DECIMAL(18,2) NULL,                  -- Valor total pagado de la obra
+
+    valor_inicial_interventoria DECIMAL(18,2) NULL,              -- Valor inicial de la interventoría
+    valor_total_adicionado_interventoria DECIMAL(18,2) NULL,     -- Valor total adicionado interventoría
+    valor_total_facturado_interventoria DECIMAL(18,2) NULL,      -- Valor total facturado interventoría
+    valor_total_pagado_interventoria DECIMAL(18,2) NULL,         -- Valor total pagado interventoría
+
+    fecha_entrega DATE NULL,                                     -- Fecha de entrega del proyecto
+    ampliacion_contractual BOOLEAN NULL,                         -- Indica si tuvo ampliación contractual
+    
+    created_at TIMESTAMPTZ DEFAULT NOW(),                        -- Fecha de creación del registro
+    updated_at TIMESTAMPTZ DEFAULT NOW()                         -- Fecha de última actualización
 );
 
 -- ==========================================
