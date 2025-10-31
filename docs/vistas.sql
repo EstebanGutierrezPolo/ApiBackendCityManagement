@@ -5,7 +5,8 @@ SELECT
     s.nombre_sector,
     b.nombre_barrio,
     pe.nombre_estado AS estado_proyecto,
-    p.valor_inicial_obra AS presupuesto_inicial
+    p.valor_inicial_obra AS presupuesto_inicial,
+    pse.nombre_subestado AS subestado_proyecto
 FROM proyectos p
 -- Relación con programas
 LEFT JOIN programas pr ON p.id_programa = pr.id_programa
@@ -13,6 +14,9 @@ LEFT JOIN programas pr ON p.id_programa = pr.id_programa
 LEFT JOIN sectores s ON pr.id_sector = s.id_sector
 -- Relación con el estado del proyecto
 LEFT JOIN proyecto_estado pe ON p.id_proyecto_estado = pe.id_proyecto_estado
+-- Relación con el subestado del proyecto
+LEFT JOIN proyecto_subestado pse ON p.id_proyecto_subestado = pse.id_proyecto_subestado
+
 -- Relación con proyectos_barrios
 LEFT JOIN proyectos_barrios pb ON p.id_proyecto = pb.id_proyecto
 -- Relación con barrios
