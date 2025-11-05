@@ -4,16 +4,16 @@
 
 ¿Cómo se calcula? Para cada sector, el backend envía la cantidad de proyectos en cada fase:
 
-formulacion
-precontractual
-contractual
-postcontractual
+**Formulacion**
+**Precontractual**
+**Contractual**
+**Postcontractual**
 A cada fase se le asigna un peso:
 
-Formulación: 0.25
-Precontractual: 0.5
-Contractual: 0.75
-Postcontractual: 1
+**Formulación**: 0.25
+**Precontractual**: 0.5
+**Contractual**: 0.75
+**Postcontractual**: 1
 La fórmula aplicada es:
 
 progreso_sector = (  (formulacion * 0.25) +  (precontractual * 0.5) +  (contractual * 0.75) +  (postcontractual * 1)
