@@ -224,3 +224,8 @@ INSERT INTO "public"."barrios" ("barrio","localidad","area_has","area_m2","area_
 COMMIT;
 
 ANALYZE "public"."barrios";
+
+ALTER TABLE barrios ADD COLUMN geojson json;
+
+UPDATE barrios
+SET geojson = ST_AsGeoJSON(geom_barrio)::json;
