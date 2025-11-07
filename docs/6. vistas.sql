@@ -118,14 +118,28 @@ SELECT
     
     COUNT(p.id_proyecto) AS total_proyectos,
 
+    -- 📘 Proyectos en formulación
+    COUNT(*) FILTER (
+        WHERE pe.nombre_estado ILIKE '%formulación%' 
+           OR pe.nombre_estado ILIKE '%formulacion%'
+    ) AS proyectos_formulacion,
+
+    -- 📘 Proyectos en precontractual
+    COUNT(*) FILTER (
+        WHERE pe.nombre_estado ILIKE '%precontractual%'
+    ) AS proyectos_precontractuales,
+
+    -- 📘 Proyectos en contractual
     COUNT(*) FILTER (
         WHERE pe.nombre_estado ILIKE '%contractual%'
     ) AS proyectos_contractuales,
 
+    -- 📘 Proyectos en postcontractual
     COUNT(*) FILTER (
         WHERE pe.nombre_estado ILIKE '%postcontractual%'
     ) AS proyectos_postcontractuales,
 
+    -- 💰 Suma del presupuesto (valor inicial)
     COALESCE(SUM(p.valor_inicial_obra), 0) AS presupuesto_total
 
 FROM sectores s
