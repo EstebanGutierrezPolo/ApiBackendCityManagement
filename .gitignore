@@ -1,0 +1,68 @@
+# ----------------------------------------------------------------------
+# 1. Dependencias y Salidas de Build
+# ----------------------------------------------------------------------
+
+# Ignorar la carpeta de dependencias de Node.js (la más común)
+/node_modules
+
+# Ignorar las carpetas de compilación y artefactos
+/dist
+/build
+/out
+/target
+/public/build
+
+# Archivos de caché
+.cache
+.npm
+
+# ----------------------------------------------------------------------
+# 2. Configuración Específica del Entorno
+# ----------------------------------------------------------------------
+
+# Variables de entorno y secretos
+# ¡IMPORTANTE! NUNCA subir secretos.
+.env
+.env.*
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# ----------------------------------------------------------------------
+# 3. Archivos del Sistema Operativo
+# ----------------------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ----------------------------------------------------------------------
+# 4. Archivos de Editores e IDEs Comunes
+# ----------------------------------------------------------------------
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains IDEs (IntelliJ, WebStorm, PyCharm, etc.)
+.idea/
+*.iml
+
+# Vim
+*~
+*.swp
+*.swo
+
+# Nano
+*.~
+
+# ----------------------------------------------------------------------
+# 5. Archivos Temporales/Log
+# ----------------------------------------------------------------------
+*.tmp
+*.temp
